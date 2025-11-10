@@ -1,29 +1,27 @@
 <!doctype html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tvoje Jméno — Portfolio</title>
-  <meta name="description" content="Portfolio — Tvoje Jméno. Ukázky projektů, dovednosti a kontakt." />
+  <title>Lynex0 — Portfolio</title>
+  <meta name="description" content="Lynex0 — front-end developer & generalist. HTML, CSS, LUA, PYTHON, SQL." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* -------------------------
-       Design tokens
+       Mono design tokens (black & white only)
        ------------------------- */
     :root{
-      --bg: #0d1114;           /* tmavý antracit */
-      --surface: #0f1418;
-      --muted: #9aa4ae;
-      --text: #eef2f6;
-      --accent: #7b61ff;
-      --accent-2: #46e6c6;
-      --glass: rgba(255,255,255,0.04);
-      --shadow: 0 12px 36px rgba(2,6,23,0.6);
-      --radius-lg: 14px;
-      --radius-md: 10px;
+      --bg: #050505;           /* deep black */
+      --surface: #0b0b0b;      /* slightly lighter panel */
+      --muted: #bfbfbf;        /* muted text */
+      --text: #ffffff;         /* pure white */
+      --glass: rgba(255,255,255,0.03);
+      --shadow: 0 18px 50px rgba(0,0,0,0.75);
+      --radius-lg: 16px;
+      --radius-md: 12px;
       --container: 1100px;
-      --focus: 0 0 0 6px rgba(123,97,255,0.10);
+      --focus: 0 0 0 6px rgba(255,255,255,0.06);
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
@@ -34,15 +32,15 @@
     html,body{height:100%}
     body{
       margin:0;
-      background:linear-gradient(180deg,var(--bg), #071014 120%);
+      background:linear-gradient(180deg,var(--bg), #020202 140%);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
+      line-height:1.6;
       font-size:16px;
       scroll-behavior:smooth;
     }
-    .container{max-width:var(--container);margin:0 auto;padding:2rem;}
+    .container{max-width:var(--container);margin:0 auto;padding:3rem;}
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
@@ -53,8 +51,8 @@
     header.site-header{
       position:sticky; top:0; z-index:60;
       backdrop-filter: blur(6px);
-      transition:all 300ms ease;
-      background: linear-gradient(180deg, rgba(13,17,20,0.12), transparent);
+      transition:all 260ms ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
       border-bottom: 1px solid rgba(255,255,255,0.02);
     }
     .site-header .container{
@@ -62,158 +60,167 @@
       padding:1rem 2rem;
     }
     .logo{
-      font-weight:700;font-size:1.0625rem;letter-spacing:0.4px;
-      color:var(--text)
+      font-weight:800;font-size:1.0625rem;letter-spacing:0.6px;color:var(--text)
     }
     nav.nav{display:flex;gap:1rem;align-items:center}
-    nav.nav a{color:var(--muted);font-weight:600;font-size:.95rem;padding:8px 10px;border-radius:8px}
+    nav.nav a{color:var(--muted);font-weight:600;font-size:.95rem;padding:8px 10px;border-radius:10px}
     nav.nav a:hover, nav.nav a:focus{color:var(--text);background:rgba(255,255,255,0.02)}
-    .cta-ghost{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);font-weight:600;background:transparent}
+    .cta-ghost{padding:8px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);font-weight:600;background:transparent}
     .cta-primary{
-      display:inline-flex;align-items:center;gap:.6rem;padding:10px 14px;border-radius:12px;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:var(--shadow);
-      color:#fff;font-weight:700;border:0;cursor:pointer;transition:transform 180ms ease, box-shadow 180ms ease;
+      display:inline-flex;align-items:center;gap:.6rem;padding:12px 16px;border-radius:14px;
+      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);font-weight:700;cursor:pointer;
+      transition:transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
     }
-    .cta-primary:active{transform:translateY(1px)}
+    .cta-primary:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(255,255,255,0.02)}
     .cta-primary:focus{outline:none;box-shadow:var(--focus)}
 
-    /* compact header on scroll */
-    header.site-header.scrolled{padding:0.4rem 0; background: linear-gradient(180deg, rgba(13,17,20,0.22), transparent);}
+    header.site-header.scrolled{padding:0.35rem 0;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);}
 
     /* -------------------------
-       Hero
+       Hero - increased vertical spacing
        ------------------------- */
     .hero{
-      padding:6.5rem 0 4rem 0;
-      display:grid;grid-template-columns:1fr 420px;gap:2.5rem;align-items:center;
+      padding:8.5rem 0 6.5rem 0;
+      display:grid;grid-template-columns:1fr 480px;gap:3.5rem;align-items:center;
     }
-    .hero .eyebrow{color:var(--muted);font-weight:600;margin-bottom:.6rem}
+    .hero .eyebrow{color:var(--muted);font-weight:600;margin-bottom:.8rem}
     .hero h1{
       margin:0;font-weight:800;line-height:1.02;
-      font-size:clamp(2.2rem,4.6vw,3.6rem);
+      font-size:clamp(2.4rem,5vw,4rem);
+      letter-spacing:-0.6px;
     }
-    .hero p.lead{color:var(--muted);margin-top:1rem;max-width:54ch}
-    .hero .actions{margin-top:1.6rem;display:flex;gap:1rem;flex-wrap:wrap}
+    .hero p.lead{color:var(--muted);margin-top:1.2rem;max-width:60ch}
+    .hero .actions{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
 
     /* right visual */
     .hero-visual{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:var(--radius-lg); padding:1rem; position:relative; overflow:hidden;
-      height:320px; display:flex;align-items:center;justify-content:center;
-      box-shadow:var(--shadow);
+      background:var(--surface);border-radius:var(--radius-lg); padding:1rem; position:relative; overflow:hidden;
+      height:380px; display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
+      transform:translateY(0); transition:transform 600ms cubic-bezier(.2,.9,.2,1);
     }
-    .mock-window{width:100%;height:100%;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#071015, #0b1216);display:flex;flex-direction:column}
-    .mock-window .topbar{height:36px;display:flex;align-items:center;gap:.6rem;padding:.5rem .8rem;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)}
-    .dot{width:10px;height:10px;border-radius:50%}
-    .dot.red{background:#ff7b7b}
-    .dot.yellow{background:#ffd36b}
-    .dot.green{background:#7af27b}
-    .mock-content{flex:1;display:grid;grid-template-columns:1fr 1fr;padding:1rem;gap:10px}
-    .mock-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border-radius:8px;padding:10px}
+    .hero-visual.floating{animation:floaty 6s ease-in-out infinite}
+    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-8px)} 100%{transform:translateY(0)} }
 
     /* -------------------------
-       Projects grid
+       Projects grid (more breathing room)
        ------------------------- */
-    section.projects{padding:3rem 0}
-    .projects .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+    section.projects{padding:5.5rem 0}
+    .projects h2{margin-bottom:2.2rem}
+    .projects .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
     .card{
       background:var(--surface);border-radius:var(--radius-md);overflow:hidden;position:relative;
-      transition:transform 300ms cubic-bezier(.2,.9,.2,1), box-shadow 300ms;box-shadow: 0 8px 26px rgba(2,6,23,0.45);
+      transition:transform 420ms cubic-bezier(.2,.9,.2,1), box-shadow 420ms;
+      box-shadow: 0 14px 38px rgba(0,0,0,0.6);
     }
-    .card:hover{transform:translateY(-8px)}
-    .card .thumb{height:160px;overflow:hidden}
+    .card:hover{transform:translateY(-10px)}
+    .card .thumb{height:200px;overflow:hidden}
     .card img{width:100%;height:100%;object-fit:cover;display:block}
-    .card .meta{padding:1rem}
-    .card h3{margin:0 0 .4rem;font-size:1.05rem}
-    .card p{margin:0;color:var(--muted);font-size:.95rem}
-    .card .tags{margin-top:.6rem;display:flex;gap:.4rem;flex-wrap:wrap}
-    .chip{background:rgba(255,255,255,0.03);padding:.35rem .6rem;border-radius:999px;font-size:.8rem;color:var(--muted)}
+    .card .meta{padding:1.2rem}
+    .card h3{margin:0 0 .4rem;font-size:1.1rem}
+    .card p{margin:0;color:var(--muted);font-size:.98rem}
+    .card .tags{margin-top:.8rem;display:flex;gap:.45rem;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.02);padding:.36rem .66rem;border-radius:999px;font-size:.82rem;color:var(--muted)}
 
-    /* overlay CTA on hover */
     .card .overlay{
-      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.42));opacity:0;transition:opacity 220ms ease;
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.42);opacity:0;transition:opacity 260ms ease;
     }
     .card:hover .overlay{opacity:1}
     .overlay .view-btn{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:.6rem 1rem;border-radius:10px;color:#fff;font-weight:700;border:0;
-      box-shadow:0 8px 30px rgba(75,50,200,0.14);cursor:pointer;
+      background:transparent;color:var(--text);padding:.6rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.06);font-weight:700;cursor:pointer;
+      transition:transform 180ms ease;
     }
+    .overlay .view-btn:hover{transform:translateY(-6px)}
 
     /* -------------------------
-       About & skills
+       About & skills with larger spacing
        ------------------------- */
-    section.about{display:grid;grid-template-columns:1fr 320px;gap:2rem;padding:3rem 0;align-items:start}
-    .bio{color:var(--muted);line-height:1.6}
-    .skills{background:var(--surface);padding:1rem;border-radius:12px}
-    .skill{display:flex;align-items:center;justify-content:space-between;padding:.45rem 0}
-    .progress{height:8px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:60%;margin-left:1rem}
-    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:60%}
+    section.about{display:grid;grid-template-columns:1fr 380px;gap:3rem;padding:5.5rem 0;align-items:start}
+    .bio{color:var(--muted);line-height:1.7;font-size:1.02rem}
+    .skills{background:var(--surface);padding:1.25rem;border-radius:14px}
+    .skill{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0}
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:60%;margin-left:1rem}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.82));width:60%;}
 
     /* -------------------------
-       Contact
+       Timeline (optional) - more vertical gaps
        ------------------------- */
-    section.contact{padding:3rem 0}
-    form.card-form{background:var(--surface);padding:1.25rem;border-radius:12px;display:grid;gap:.75rem;max-width:720px}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    section.timeline{padding:5.5rem 0}
+    .timeline-list{display:grid;gap:1.6rem;max-width:780px}
+
+    /* -------------------------
+       Contact - generous spacing
+       ------------------------- */
+    section.contact{padding:6rem 0}
+    form.card-form{background:var(--surface);padding:1.6rem;border-radius:14px;display:grid;gap:1rem;max-width:760px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
     input,textarea{
-      background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:.7rem;border-radius:8px;font-size:1rem;
+      background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:.85rem;border-radius:10px;font-size:1rem;
     }
-    textarea{min-height:140px;resize:vertical}
-    .form-actions{display:flex;gap:.6rem;align-items:center}
-    .note{color:var(--muted);font-size:.9rem}
+    textarea{min-height:160px;resize:vertical}
+    .form-actions{display:flex;gap:.8rem;align-items:center}
+    .note{color:var(--muted);font-size:.95rem}
 
     /* -------------------------
        Footer
        ------------------------- */
-    footer.site-footer{padding:2rem 0;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted)}
+    footer.site-footer{padding:3.2rem 0;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted)}
 
     /* -------------------------
-       Reveal utility (initial state)
+       Reveal utility (initial state) + stronger stagger
        ------------------------- */
-    [data-reveal]{opacity:0;transform:translateY(18px) scale(.998);transition:opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1)}
+    [data-reveal]{opacity:0;transform:translateY(22px) scale(.996);transition:opacity 640ms cubic-bezier(.2,.9,.2,1), transform 640ms cubic-bezier(.2,.9,.2,1)}
     [data-reveal].is-revealed{opacity:1;transform:none}
 
+    /* small micro-animations for inline elements */
+    .micro-fade{opacity:0;transform:translateY(8px);transition:opacity 520ms ease, transform 520ms ease}
+    .micro-fade.show{opacity:1;transform:none}
+
     /* -------------------------
-       Modal (project detail)
+       Modal
        ------------------------- */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:120}
     .modal.is-open{display:flex}
-    .modal-backdrop{position:absolute;inset:0;background:rgba(2,6,12,0.6);backdrop-filter: blur(6px)}
-    .modal-panel{position:relative;background:linear-gradient(180deg,#071015,#0b1216);padding:1.25rem;border-radius:12px;max-width:900px;width:calc(100% - 2rem);z-index:10;box-shadow:var(--shadow)}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.75);backdrop-filter: blur(6px)}
+    .modal-panel{position:relative;background:var(--surface);padding:1.25rem;border-radius:12px;max-width:920px;width:calc(100% - 2rem);z-index:10;box-shadow:var(--shadow)}
     .modal-panel .close{position:absolute;right:10px;top:10px;border:0;background:transparent;color:var(--muted);font-size:1.1rem;cursor:pointer}
+
+    /* -------------------------
+       Accessibility focus
+       ------------------------- */
+    a:focus, button:focus, input:focus, textarea:focus{outline:none;box-shadow:var(--focus)}
 
     /* -------------------------
        Responsive
        ------------------------- */
     @media (max-width:1100px){
-      .hero{grid-template-columns:1fr 340px}
+      .hero{grid-template-columns:1fr 380px}
       .projects .grid{grid-template-columns:repeat(2,1fr)}
       section.about{grid-template-columns:1fr}
-      .hero-visual{height:300px}
+      .hero-visual{height:320px}
     }
     @media (max-width:720px){
       .site-header .container{padding:0.6rem 1rem}
       nav.nav{display:none}
-      .hero{grid-template-columns:1fr;gap:1.1rem;padding:4rem 1rem 2rem}
+      .hero{grid-template-columns:1fr;gap:1.4rem;padding:5rem 1rem 2rem}
       .hero-visual{height:220px}
       .projects .grid{grid-template-columns:1fr}
       .container{padding:1rem}
-      .card .thumb{height:180px}
+      .card .thumb{height:200px}
     }
   </style>
 </head>
 <body>
   <header class="site-header" id="header">
     <div class="container">
-      <a class="logo" href="#">Tvoje Jméno</a>
-      <nav class="nav" aria-label="Hlavní navigace">
-        <a href="#projects">Projekty</a>
-        <a href="#about">O mně</a>
-        <a href="#contact">Kontakt</a>
+      <a class="logo" href="#">Lynex0</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <div style="display:flex;gap:.6rem;align-items:center">
-        <a class="cta-ghost" href="#contact">Kontakt</a>
-        <a class="cta-primary" href="#projects">Projekty</a>
+      <div style="display:flex;gap:.7rem;align-items:center">
+        <a class="cta-ghost" href="#contact">Contact</a>
+        <a class="cta-primary" href="#projects">View Projects</a>
       </div>
     </div>
   </header>
@@ -222,32 +229,37 @@
     <!-- HERO -->
     <section id="hero" class="hero container">
       <div data-reveal class="hero-copy">
-        <div class="eyebrow">Ahoj — já jsem</div>
-        <h1>Tvůj plný<br><span style="color:var(--accent)">jméno</span> — web developer</h1>
-        <p class="lead">Vytvářím moderní, rychlé a responzivní weby. Zaměřuji se na čistý kód, UI detaily a výbornou použitelnost. Tohle je moje osobní portfolio.</p>
+        <div class="eyebrow">Hello — I am</div>
+        <h1>Lynex0<br><span style="font-weight:700">front-end & generalist</span></h1>
+        <p class="lead">I work with HTML, CSS, LUA, PYTHON and SQL to build clean, performant web experiences. I focus on practical UI details and accessible code.</p>
         <div class="actions">
-          <a class="cta-primary" href="#projects">Prohlédnout projekty</a>
-          <a class="cta-ghost" href="#contact">Napiš mi</a>
+          <a class="cta-primary" href="#projects">See projects</a>
+          <a class="cta-ghost" href="#contact">Get in touch</a>
+        </div>
+
+        <!-- micro intro lines with subtle staged animation -->
+        <div style="margin-top:1.6rem">
+          <div class="micro-fade" style="transition-delay:120ms">• Specialized in clean markup & CSS architecture</div>
+          <div class="micro-fade" style="transition-delay:240ms">• Comfortable with scripting (Lua, Python) and DB (SQL)</div>
+          <div class="micro-fade" style="transition-delay:360ms">• Focus on accessibility, performance and maintainability</div>
         </div>
       </div>
 
-      <div data-reveal class="hero-visual" aria-hidden="true">
-        <div class="mock-window" role="img" aria-label="Vizualizace projektu">
-          <div class="topbar">
-            <span class="dot red" aria-hidden="true"></span>
-            <span class="dot yellow" aria-hidden="true"></span>
-            <span class="dot green" aria-hidden="true"></span>
+      <div data-reveal class="hero-visual floating" aria-hidden="true">
+        <div style="width:100%;height:100%;border-radius:12px;display:flex;flex-direction:column;gap:12px; padding:18px;box-sizing:border-box">
+          <div style="height:46px;display:flex;align-items:center;gap:10px">
+            <div style="width:10px;height:10px;border-radius:50%;background:#fff;opacity:.08"></div>
+            <div style="height:12px;width:60%;background:rgba(255,255,255,0.04);border-radius:8px"></div>
           </div>
-          <div class="mock-content">
-            <div class="mock-card" style="border-radius:8px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:flex-start;padding:12px">
-              <div style="width:70%;height:14px;background:linear-gradient(90deg,#ffffff20,#ffffff14);border-radius:6px"></div>
-              <div style="width:40%;height:12px;background:linear-gradient(90deg,#ffffff12,#ffffff08);border-radius:6px"></div>
-              <div style="width:90%;height:32px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:8px"></div>
+          <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px">
+              <div style="height:10px;width:80%;background:rgba(255,255,255,0.04);border-radius:6px"></div>
+              <div style="height:10px;width:40%;background:rgba(255,255,255,0.03);border-radius:6px"></div>
+              <div style="height:36px;width:100%;background:rgba(255,255,255,0.04);border-radius:8px;align-self:end"></div>
             </div>
-            <div class="mock-card" style="display:flex;align-items:center;justify-content:center">
+            <div style="background:rgba(255,255,255,0.01);border-radius:10px;display:flex;align-items:center;justify-content:center">
               <svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect width="120" height="80" rx="8" fill="url(#g)"></rect>
-                <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7b61ff"/><stop offset="1" stop-color="#46e6c6"/></linearGradient></defs>
+                <rect width="120" height="80" rx="8" fill="#111"></rect>
               </svg>
             </div>
           </div>
@@ -257,25 +269,21 @@
 
     <!-- PROJECTS -->
     <section id="projects" class="projects container">
-      <h2 data-reveal>Projekty</h2>
+      <h2 data-reveal>Projects</h2>
       <div class="grid" aria-live="polite">
         <!-- Card 1 -->
         <article class="card" data-reveal>
           <div class="thumb" aria-hidden="true">
-            <!-- placeholder image: gradient -->
-            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Screenshot projektu">
-              <defs>
-                <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#0b2436"/></linearGradient>
-              </defs>
-              <rect width="800" height="500" fill="url(#g1)"></rect>
+            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+              <rect width="800" height="500" fill="#0b0b0b"></rect>
             </svg>
           </div>
           <div class="overlay" aria-hidden="true">
-            <button class="view-btn" data-project='{"title":"Projekt Alpha","desc":"Krátký popis projektu Alpha. Technologie: HTML, CSS, JS","img":""}'>View</button>
+            <button class="view-btn" data-project='{"title":"Project Alpha","desc":"Landing and micro-interactions. Built with HTML/CSS/JS."}'>View</button>
           </div>
           <div class="meta">
-            <h3>Projekt Alpha</h3>
-            <p>Interaktivní landing s animacemi a responzivním layoutem.</p>
+            <h3>Project Alpha</h3>
+            <p>Landing with refined micro-interactions and progressive enhancement.</p>
             <div class="tags">
               <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span>
             </div>
@@ -285,19 +293,18 @@
         <!-- Card 2 -->
         <article class="card" data-reveal>
           <div class="thumb" aria-hidden="true">
-            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Screenshot projektu">
-              <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#071015"/><stop offset="1" stop-color="#0b1830"/></linearGradient></defs>
-              <rect width="800" height="500" fill="url(#g2)"></rect>
+            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+              <rect width="800" height="500" fill="#0b0b0b"></rect>
             </svg>
           </div>
           <div class="overlay" aria-hidden="true">
-            <button class="view-btn" data-project='{"title":"Projekt Beta","desc":"Dashboard pro sledování dat. Technologie: React (přepnutelně).","img":""}'>View</button>
+            <button class="view-btn" data-project='{"title":"Project Beta","desc":"Data dashboard prototype with thoughtful layout and filters."}'>View</button>
           </div>
           <div class="meta">
-            <h3>Projekt Beta</h3>
-            <p>Dashboard a vizualizace dat — čitelné UI a filtrace.</p>
+            <h3>Project Beta</h3>
+            <p>Dashboard focused on readability and fast client-side filtering.</p>
             <div class="tags">
-              <span class="chip">UI</span><span class="chip">Dashboard</span><span class="chip">Data</span>
+              <span class="chip">UI</span><span class="chip">Dashboard</span><span class="chip">UX</span>
             </div>
           </div>
         </article>
@@ -305,17 +312,16 @@
         <!-- Card 3 -->
         <article class="card" data-reveal>
           <div class="thumb" aria-hidden="true">
-            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Screenshot projektu">
-              <defs><linearGradient id="g3" x1="0" x2="1"><stop offset="0" stop-color="#001217"/><stop offset="1" stop-color="#012431"/></linearGradient></defs>
-              <rect width="800" height="500" fill="url(#g3)"></rect>
+            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+              <rect width="800" height="500" fill="#0b0b0b"></rect>
             </svg>
           </div>
           <div class="overlay" aria-hidden="true">
-            <button class="view-btn" data-project='{"title":"Projekt Gamma","desc":"Malá hra / interaktivní zkušenost. Technologie: Canvas, JS","img":""}'>View</button>
+            <button class="view-btn" data-project='{"title":"Project Gamma","desc":"Interactive prototype / small game built with Canvas + JS."}'>View</button>
           </div>
           <div class="meta">
-            <h3>Projekt Gamma</h3>
-            <p>Interaktivní prototyp s grafikou a jednoduchou logikou.</p>
+            <h3>Project Gamma</h3>
+            <p>Interactive prototype exploring input and simple physics logic.</p>
             <div class="tags">
               <span class="chip">Canvas</span><span class="chip">JS</span><span class="chip">Prototype</span>
             </div>
@@ -327,42 +333,58 @@
     <!-- ABOUT -->
     <section id="about" class="about container">
       <div data-reveal>
-        <h2>O mně</h2>
-        <p class="bio">Jsem vývojář se zaměřením na moderní front-endové řešení — čistý a udržitelný kód, pozornost k detailu v UI a dobré uživatelské zkušenosti. Rád pracuji s moderními nástroji, optimalizuji výkon a tvořím přehledná rozhraní.</p>
+        <h2>About</h2>
+        <p class="bio">I am Lynex0 — a developer experienced in <strong>HTML, CSS, LUA, PYTHON, and SQL</strong>. I prefer pragmatic, maintainable solutions: semantic markup, logical CSS structure, and small, testable scripts.</p>
       </div>
-      <aside data-reveal class="skills" aria-label="Dovednosti">
-        <h3 style="margin:0 0 .6rem 0">Dovednosti</h3>
-        <div class="skill"><strong>HTML & CSS</strong><div class="progress"><i style="width:90%"></i></div></div>
-        <div class="skill"><strong>JavaScript</strong><div class="progress"><i style="width:82%"></i></div></div>
-        <div class="skill"><strong>Accessibility</strong><div class="progress"><i style="width:72%"></i></div></div>
-        <div class="skill"><strong>Performance</strong><div class="progress"><i style="width:70%"></i></div></div>
+      <aside data-reveal class="skills" aria-label="Skills">
+        <h3 style="margin:0 0 .6rem 0">Skills</h3>
+        <div class="skill"><strong>HTML & CSS</strong><div class="progress"><i style="width:92%"></i></div></div>
+        <div class="skill"><strong>JavaScript</strong><div class="progress"><i style="width:86%"></i></div></div>
+        <div class="skill"><strong>Lua</strong><div class="progress"><i style="width:78%"></i></div></div>
+        <div class="skill"><strong>Python</strong><div class="progress"><i style="width:76%"></i></div></div>
+        <div class="skill"><strong>SQL</strong><div class="progress"><i style="width:74%"></i></div></div>
       </aside>
+    </section>
+
+    <!-- TIMELINE (optional, big vertical spacing) -->
+    <section class="timeline container" aria-label="Experience">
+      <h2 data-reveal>Experience</h2>
+      <div class="timeline-list" data-reveal>
+        <div style="padding:1.2rem;background:var(--surface);border-radius:12px">
+          <strong>2022 — present</strong>
+          <div style="color:var(--muted);margin-top:.4rem">Freelance projects and tool development (front-end, scripts, database work).</div>
+        </div>
+        <div style="height:1.2rem"></div>
+        <div style="padding:1.2rem;background:var(--surface);border-radius:12px">
+          <strong>2020 — 2022</strong>
+          <div style="color:var(--muted);margin-top:.4rem">In-house UI work and performance optimization.</div>
+        </div>
+      </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="contact container">
-      <h2 data-reveal>Kontakt</h2>
-      <form id="contactForm" class="card-form" data-reveal aria-label="Kontaktni formular">
-        <!-- NOTE: change the form action to your Formspree endpoint or backend -->
-        <!-- Example Formspree endpoint: action="https://formspree.io/f/your-id" method="POST" -->
+      <h2 data-reveal>Contact</h2>
+      <form id="contactForm" class="card-form" data-reveal aria-label="Contact form">
+        <!-- NOTE: set action & method to your endpoint (Formspree or custom API) -->
         <div class="form-row">
-          <input name="name" type="text" placeholder="Tvoje jméno" required aria-label="Jméno">
+          <input name="name" type="text" placeholder="Your name" required aria-label="Name">
           <input name="email" type="email" placeholder="Email" required aria-label="Email">
         </div>
-        <textarea name="message" placeholder="Zpráva" required aria-label="Zpráva"></textarea>
+        <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
         <div class="form-actions">
-          <button type="submit" class="cta-primary">Odeslat zprávu</button>
-          <div class="note">Preferuješ email? napiš: <strong>tvoje@email.cz</strong></div>
+          <button type="submit" class="cta-primary">Send message</button>
+          <div class="note">Prefer email? Write to: <strong>lynex0@example.com</strong></div>
         </div>
-        <div id="formMessage" role="status" aria-live="polite" style="color:var(--accent);display:none;margin-top:.6rem"></div>
+        <div id="formMessage" role="status" aria-live="polite" style="color:var(--text);display:none;margin-top:.6rem"></div>
       </form>
     </section>
   </main>
 
   <footer class="site-footer container">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
-      <div>© <span id="year"></span> Tvoje Jméno</div>
-      <div style="color:var(--muted)">Made with ♥ — <a href="#" style="color:var(--muted)">GitHub</a></div>
+      <div>© <span id="year"></span> Lynex0</div>
+      <div style="color:var(--muted)">Built with clarity — HTML · CSS · LUA · PYTHON · SQL</div>
     </div>
   </footer>
 
@@ -370,46 +392,51 @@
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop" tabindex="-1"></div>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="close" aria-label="Zavřít" id="modalClose">✕</button>
-      <h3 id="modalTitle">Název projektu</h3>
+      <button class="close" aria-label="Close" id="modalClose">✕</button>
+      <h3 id="modalTitle">Project</h3>
       <p id="modalDesc" style="color:var(--muted)"></p>
       <div style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-        <div style="background:linear-gradient(180deg,#071015,#08141b);height:160px;border-radius:8px"></div>
-        <div style="background:linear-gradient(90deg,#071018,#0d1320);height:160px;border-radius:8px"></div>
+        <div style="background:var(--surface);height:160px;border-radius:8px"></div>
+        <div style="background:var(--surface);height:160px;border-radius:8px"></div>
       </div>
     </div>
   </div>
 
   <script>
-    // small utility & interactions
+    // small utilities & interactions
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // header compact on scroll
     const header = document.getElementById('header');
-    let lastScroll = 0;
     window.addEventListener('scroll', () => {
-      if(window.scrollY > 36) header.classList.add('scrolled');
+      if(window.scrollY > 48) header.classList.add('scrolled');
       else header.classList.remove('scrolled');
-      lastScroll = window.scrollY;
     }, {passive:true});
 
-    // reveal on scroll with IntersectionObserver
+    // reveal on scroll with IntersectionObserver and stronger stagger
     const revealEls = document.querySelectorAll('[data-reveal]');
     const obs = new IntersectionObserver((entries, o) => {
-      entries.forEach((entry, idx) => {
+      entries.forEach(entry => {
         if(entry.isIntersecting){
-          // stagger for items in same container
-          const delay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0);
-          setTimeout(()=> entry.target.classList.add('is-revealed'), idx * 80);
+          // compute a small stagger based on vertical position + index
+          const rect = entry.boundingClientRect || entry.target.getBoundingClientRect();
+          const posFactor = Math.max(0, Math.floor(rect.top / 120));
+          const baseDelay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0) * 60;
+          const delay = Math.min(700, baseDelay + posFactor * 80);
+          setTimeout(()=> entry.target.classList.add('is-revealed'), delay);
           o.unobserve(entry.target);
         }
       });
-    }, {threshold: 0.12});
+    }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
 
-    // add index within parent for gentle stagger
     revealEls.forEach((el, i) => {
       el.datasetIndex = i % 6;
       obs.observe(el);
+    });
+
+    // reveal micro lines
+    document.querySelectorAll('.micro-fade').forEach((el, idx) => {
+      setTimeout(()=> el.classList.add('show'), 220 + idx * 120);
     });
 
     // Project modal logic
@@ -421,7 +448,7 @@
     document.querySelectorAll('.view-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const data = JSON.parse(btn.dataset.project || '{}');
-        modalTitle.textContent = data.title || 'Projekt';
+        modalTitle.textContent = data.title || 'Project';
         modalDesc.textContent = data.desc || '';
         openModal();
       });
@@ -431,7 +458,6 @@
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
-      // focus trap simple
       modalClose.focus();
     }
     function closeModal(){
@@ -443,183 +469,23 @@
     modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
     document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
 
-    // contact form (demo: no external submit)
+    // contact form (demo)
     const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMessage');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Replace this with real submission logic: Formspree, fetch to your API, etc.
-      // Example for Formspree:
-      // form.action = 'https://formspree.io/f/your-id'; form.method = 'POST'; form.submit();
       formMsg.style.display = 'block';
-      formMsg.textContent = 'Děkuji! Zpráva byla odeslána (demo).';
+      formMsg.textContent = 'Thanks — message sent (demo).';
       form.reset();
-      setTimeout(()=> formMsg.style.display = 'none', 4000);
+      setTimeout(()=> formMsg.style.display = 'none', 4200);
     });
 
-    // Accessibility: ensure keyboard nav to anchors is visible
+    // keyboard activation for anchors & buttons (a11y small helper)
     document.querySelectorAll('a, button').forEach(el => {
       el.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') el.click();
       });
     });
-  </script>
-</body>
-</html>      z-index: 1000;
-    }
-
-    .ticker-text {
-      display: inline-block;
-      padding-left: 100%;
-      white-space: nowrap;
-      animation: scroll-left 12s linear infinite;
-      text-shadow: 0 0 5px #ff7b00, 0 0 10px #ffa600, 0 0 15px #ff7b00;
-    }
-
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    h1 {
-      margin: 80px 0 20px;
-      font-size: 2.2em;
-      text-shadow: 0 0 20px #ff7b00, 0 0 20px #ffa600, 0 0 20px #ff7b00
-    }
-
-    /* 🔹 Odpočet */
-    #countdown {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      color: #ff7b00;
-      font-weight: bold;
-    }
-
-    /* 🔹 Tlačítko Připojit */
-    .btn {
-      background: #ff7b00;
-      color: #2c2c2c;
-      border: 2px solid #ff7b00;
-      padding: 15px 40px;
-      font-size: 1.5em;
-      font-weight: bold;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 0 #cc6300, 0 8px 15px rgba(0,0,0,0.4);
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 0 #cc6300, 0 10px 20px rgba(0,0,0,0.4);
-      background: linear-gradient(45deg, #ff7b00, #ffa600);
-    }
-
-    .btn:active {
-      transform: translateY(3px);
-      box-shadow: 0 3px 0 #cc6300, 0 5px 10px rgba(0,0,0,0.4);
-    }
-
-    /* 🔹 Fallback instrukce */
-    pre {
-      margin-top: 25px;
-      background: rgba(255, 123, 0, 0.1);
-      border: 1px solid #ff7b00;
-      padding: 10px 20px;
-      border-radius: 8px;
-      display: inline-block;
-      color: #fff;
-      font-size: 1.1em;
-    }
-
-    /* 🔹 Footer */
-    footer {
-      background-color: #1f1f1f;
-      color: #ff7b00;
-      padding: 20px;
-      text-align: center;
-      width: 100%;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-    }
-    footer a {
-      color: #ff7b00;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <!-- 🔹 Ticker -->
-  <div class="ticker">
-    <div class="ticker-text">🔥 NTHX Tournament 28/08 17:00 🔥 NTHX Tournament 28/08 17:00 🔥</div>
-  </div>
-
-  <h1>NTHX Tournament Match</h1>
-
-  <!-- 🔹 Odpočet -->
-  <div id="countdown">⏳ Odpočet: ...</div>
-
-  <!-- 🔹 Připojit -->
-  <button class="btn" onclick="connect()">Připojit</button>
-  <button class="btn" style="margin-top:15px;" onclick="connectGOTV()">Sledovat GOTV</button>
-  
-  <!-- 🔹 Footer -->
-  <footer>
-    &copy; 2025 NTHX Tournament | <a href="https://discord.gg/AVfj3HxuwH">Připoj se na Discord</a>
-  </footer>
-
-  <script>
-    // 🔹 Odpočet
-    const matchDate = new Date("2025-08-28T17:00:00");
-    function updateCountdown() {
-      const now = new Date();
-      const diff = matchDate - now;
-      if(diff <= 0){
-        document.getElementById("countdown").innerHTML = "🏆 Zápas právě začíná!";
-        clearInterval(countdownInterval);
-        return;
-      }
-      const hours = Math.floor(diff / (1000*60*60));
-      const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-      const seconds = Math.floor((diff % (1000*60)) / 1000);
-      document.getElementById("countdown").innerHTML = `⏳ Odpočet: ${hours}h ${minutes}m ${seconds}s`;
-    }
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // 🔹 Připojení na server
-    function connect() {
-      window.location.href = "steam://connect/46.4.103.158:20009";
-      setTimeout(function(){
-        document.body.innerHTML = `
-          <div style="padding:40px; color:#ff7b00; font-family:'Montserrat',sans-serif; text-align:center;">
-            <h2>🔗 Připojujeme</h2>
-            <h2>⚠️ Jestliže automatické připojení selhalo:</h2>
-            <p>Otevři CS2 a do konzole napiš:</p>
-            <pre>connect 46.4.103.158:20009</pre>
-          </div>`;
-      },2000);
-    }
-
-    // 🔹 Připojení na GOTV
-    function connectGOTV() {
-      window.location.href = "steam://connect/46.4.103.158:20010";
-      setTimeout(function(){
-        document.body.innerHTML = `
-          <div style="padding:40px; color:#ff7b00; font-family:'Montserrat',sans-serif; text-align:center;">
-            <h2>📺 Připojujeme k GOTV</h2>
-            <h2>⚠️ Jestliže automatické připojení selhalo:</h2>
-            <p>Otevři CS2 a do konzole napiš:</p>
-            <pre>connect 46.4.103.158:20010</pre>
-          </div>`;
-      },2000);
-    }
   </script>
 </body>
 </html>
