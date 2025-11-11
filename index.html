@@ -4,13 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lynex0 — Portfolio</title>
-  <meta name="description" content="Lynex0 — front-end developer & generalist. HTML, CSS, LUA, PYTHON, SQL." />
+  <meta name="description" content="Lynex0 — FiveM Developer. HTML, CSS, LUA, PYTHON, SQL." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* -------------------------
-       Mono design tokens (black & white only)
-       Mobile-first, giant vertical gaps so each section ~1 viewport
+       Tokens - pure monochrome
        ------------------------- */
     :root{
       --bg: #050505;
@@ -18,14 +17,17 @@
       --muted: #bfbfbf;
       --text: #ffffff;
       --glass: rgba(255,255,255,0.03);
-      --shadow: 0 18px 50px rgba(0,0,0,0.75);
-      --radius-lg: 16px;
+      --shadow: 0 22px 60px rgba(0,0,0,0.8);
+      --radius-lg: 18px;
       --radius-md: 12px;
-      --container: 1000px;
+      --container: 1100px;
       --focus: 0 0 0 6px rgba(255,255,255,0.06);
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
+    /* -------------------------
+       Base (mobile-first)
+       ------------------------- */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -38,33 +40,29 @@
       font-size:16px;
       scroll-behavior:smooth;
     }
-    .container{max-width:var(--container);margin:0 auto;padding:0 1rem;}
+    .container{max-width:var(--container);margin:0 auto;padding:2rem 1rem;}
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
     /* -------------------------
-       IMPORTANT:
-       Each main section is intentionally tall.
-       On mobile default: min-height ~100vh with centered content.
-       On desktop larger vertical padding so next section appears after ~1 screen scroll.
+       Layout rule: giant vertical gaps
+       Each section centered; mobile ~100vh, desktop >> 100vh
        ------------------------- */
     section {
       position:relative;
-      min-height:100vh;                 /* ensure full viewport height */
+      min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:18vh 1rem;                /* vertical breathing room (mobile) */
+      padding:24vh 1rem;            /* mobile comfortable vertical breathing room */
     }
-
-    /* inner container centers content and limits width */
-    .inner { max-width:900px; margin:0 auto; width:100%; }
+    .inner { max-width:960px; margin:0 auto; width:100%; }
 
     h1,h2{margin:0 0 1rem 0}
     p{margin:0 0 1rem 0}
 
-    /* hero specifics */
+    /* Hero specifics */
     .eyebrow{color:var(--muted);font-weight:600;margin-bottom:.8rem}
     .hero h1{
       font-weight:800;line-height:1.02;
@@ -77,79 +75,90 @@
     .cta-primary{
       display:inline-flex;align-items:center;gap:.6rem;padding:12px 16px;border-radius:14px;
       background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);font-weight:700;cursor:pointer;
-      transition:transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
+      transition:transform 320ms cubic-bezier(.2,.9,.2,1), box-shadow 320ms ease;
     }
-    .cta-primary:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(255,255,255,0.02)}
+    .cta-primary:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(255,255,255,0.02)}
     .cta-ghost{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
 
-    /* hero visual centered under text */
+    /* Hero visual under text */
     .hero-visual{
-      margin-top:3rem;
+      margin-top:3.2rem;
       background:var(--surface);border-radius:var(--radius-lg); padding:1rem; position:relative; overflow:hidden;
-      height:360px; display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
-      transform:translateY(0); transition:transform 600ms cubic-bezier(.2,.9,.2,1);
+      height:380px; display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
+      transform:translateY(0); transition:transform 800ms cubic-bezier(.16,.84,.28,1);
     }
-    .floating{animation:floaty 6s ease-in-out infinite}
-    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
+    .floating{animation:floaty 8s ease-in-out infinite}
+    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }
 
     /* Projects */
-    .projects .grid{display:grid;grid-template-columns:1fr;gap:1.6rem}
-    .card{background:var(--surface);border-radius:var(--radius-md);overflow:hidden;position:relative;padding-bottom:0;box-shadow:0 14px 38px rgba(0,0,0,0.6);transition:transform 420ms}
-    .card:hover{transform:translateY(-8px)}
+    .projects .grid{display:grid;grid-template-columns:1fr;gap:1.8rem}
+    .card{background:var(--surface);border-radius:var(--radius-md);overflow:hidden;position:relative;padding-bottom:0;box-shadow:0 18px 48px rgba(0,0,0,0.7);transition:transform 520ms cubic-bezier(.16,.84,.28,1)}
+    .card:hover{transform:translateY(-10px)}
     .thumb{height:220px;overflow:hidden}
     .meta{padding:1.2rem}
     .chip{background:rgba(255,255,255,0.02);padding:.36rem .66rem;border-radius:999px;font-size:.82rem;color:var(--muted);margin-right:.4rem}
 
-    /* about / skills stacked */
-    .about .bio{color:var(--muted);line-height:1.7;font-size:1.02rem;margin-bottom:1.25rem}
+    /* About & skills */
+    .about .bio{color:var(--muted);line-height:1.75;font-size:1.02rem;margin-bottom:1.25rem}
     .skills{background:var(--surface);padding:1.25rem;border-radius:14px}
     .skill{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0}
-    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:60%}
-    .progress>i{display:block;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.82));width:60%}
+    .progress{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:60%}
+    .progress>i{display:block;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0.96), rgba(255,255,255,0.86));width:60%}
 
-    /* timeline stacked visually separated */
+    /* Timeline */
     .timeline-list{display:grid;gap:1.6rem}
 
-    /* contact form */
+    /* Contact */
     .card-form{background:var(--surface);padding:1.6rem;border-radius:14px;display:grid;gap:1rem;max-width:760px}
     .form-row{display:grid;grid-template-columns:1fr;gap:.9rem}
     input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:.85rem;border-radius:10px;font-size:1rem}
     textarea{min-height:160px;resize:vertical}
     .form-actions{display:flex;flex-direction:column;gap:.8rem;align-items:flex-start}
 
-    footer{padding:2rem 1rem;color:var(--muted)}
+    footer{padding:2rem 1rem;color:var(--muted);text-align:left}
 
-    /* reveal utility */
-    [data-reveal]{opacity:0;transform:translateY(22px) scale(.996);transition:opacity 640ms cubic-bezier(.2,.9,.2,1), transform 640ms cubic-bezier(.2,.9,.2,1)}
+    /* -------------------------
+       Smooth, slower reveal animation
+       ------------------------- */
+    [data-reveal]{
+      opacity:0;
+      transform:translateY(28px) scale(.995);
+      transition:opacity 900ms cubic-bezier(.16,.84,.28,1),
+                 transform 900ms cubic-bezier(.16,.84,.28,1);
+    }
     [data-reveal].is-revealed{opacity:1;transform:none}
-    .micro-fade{opacity:0;transform:translateY(8px);transition:opacity 520ms ease, transform 520ms ease}
+
+    .micro-fade{
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity 750ms cubic-bezier(.16,.84,.28,1), transform 750ms cubic-bezier(.16,.84,.28,1);
+    }
     .micro-fade.show{opacity:1;transform:none}
 
-    /* modal */
+    /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:120}
     .modal.is-open{display:flex}
-    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.75);backdrop-filter: blur(6px)}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.82);backdrop-filter: blur(6px)}
     .modal-panel{position:relative;background:var(--surface);padding:1.25rem;border-radius:12px;max-width:920px;width:calc(100% - 2rem);z-index:10;box-shadow:var(--shadow)}
     .modal-panel .close{position:absolute;right:10px;top:10px;border:0;background:transparent;color:var(--muted);font-size:1.1rem;cursor:pointer}
 
-    /* larger screens: increase vertical spacing so each section >1 viewport */
+    /* Focus */
+    a:focus, button:focus, input:focus, textarea:focus{outline:none;box-shadow:var(--focus)}
+
+    /* Desktop: make sections even taller so you need to scroll ~1–1.5 screens */
     @media (min-width:900px){
-      section{ padding:28vh 2rem; min-height:110vh } /* big vertical padding so you must scroll ~1 screen */
+      section{ padding:30vh 2rem; min-height:115vh }
       .projects .grid{grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1100px}
       .hero-visual{height:420px}
-      .card .thumb{height:260px}
+      .thumb{height:260px}
       .form-row{grid-template-columns:1fr 1fr}
       .form-actions{flex-direction:row;align-items:center;gap:1rem}
     }
-
     @media (min-width:1400px){
-      section{ padding:32vh 3rem; min-height:120vh } /* even bigger on very wide screens */
+      section{ padding:36vh 3rem; min-height:140vh }
       .projects .grid{grid-template-columns:repeat(3,1fr)}
       .hero-visual{height:480px}
     }
-
-    /* accessibility focus */
-    a:focus, button:focus, input:focus, textarea:focus{outline:none;box-shadow:var(--focus)}
   </style>
 </head>
 <body>
@@ -158,17 +167,18 @@
     <section id="hero" aria-label="Intro" data-reveal>
       <div class="inner">
         <div class="eyebrow">Hello — I am</div>
-        <h1>Lynex0<br><span style="font-weight:700">front-end & generalist</span></h1>
-        <p class="lead">I work with <strong>HTML, CSS, LUA, PYTHON and SQL</strong> to build clean, performant web experiences. I focus on practical UI details, accessibility and maintainable code.</p>
+        <h1>Lynex0<br><span style="font-weight:700">FiveM Developer</span></h1>
+        <p class="lead">I build and deliver the most performant and best-looking FiveM scripts, websites and UIs. I focus on practical UI details, accessibility and maintainable code.</p>
+
         <div class="actions">
           <a class="cta-primary" href="#projects">See projects</a>
           <a class="cta-ghost" href="#contact">Get in touch</a>
         </div>
 
         <div style="margin-top:2.2rem;display:flex;flex-direction:column;gap:.6rem">
-          <div class="micro-fade" style="transition-delay:120ms">• Semantic HTML & scalable CSS architecture</div>
-          <div class="micro-fade" style="transition-delay:240ms">• Scripting: Lua, Python; DB: SQL</div>
-          <div class="micro-fade" style="transition-delay:360ms">• Accessibility, performance & maintainability</div>
+          <div class="micro-fade" style="transition-delay:120ms">• Focused on delivering high-quality FiveM scripts & UIs</div>
+          <div class="micro-fade" style="transition-delay:240ms">• Practical experience in server development and web front-end</div>
+          <div class="micro-fade" style="transition-delay:360ms">• Emphasis on performance, visuals and maintainability</div>
         </div>
 
         <div class="hero-visual floating" aria-hidden="true" style="margin-top:3.2rem">
@@ -201,40 +211,40 @@
         <div class="grid" aria-live="polite" style="margin-top:2.4rem">
           <article class="card" data-reveal>
             <div class="thumb" aria-hidden="true">
-              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Aspect project">
                 <rect width="800" height="500" fill="#0b0b0b"></rect>
               </svg>
             </div>
             <div class="meta">
-              <h3>Project Alpha</h3>
-              <p>Landing with refined micro-interactions and progressive enhancement.</p>
-              <div style="margin-top:.6rem"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span></div>
+              <h3>Aspect</h3>
+              <p>SCP:SL RP server — I was the owner. Responsible for server vision, features and management.</p>
+              <div style="margin-top:.6rem"><span class="chip">Server</span><span class="chip">Python</span><span class="chip">Administration</span></div>
             </div>
           </article>
 
           <article class="card" data-reveal>
             <div class="thumb" aria-hidden="true">
-              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="CNE project">
                 <rect width="800" height="500" fill="#0b0b0b"></rect>
               </svg>
             </div>
             <div class="meta">
-              <h3>Project Beta</h3>
-              <p>Dashboard focused on readability and fast client-side filtering.</p>
-              <div style="margin-top:.6rem"><span class="chip">UI</span><span class="chip">Dashboard</span><span class="chip">UX</span></div>
+              <h3>CNE</h3>
+              <p>Arma 3 server — main developer and owner. Focused on gameplay systems and server tooling.</p>
+              <div style="margin-top:.6rem"><span class="chip">Arma 3</span><span class="chip">Server</span><span class="chip">Lua</span></div>
             </div>
           </article>
 
           <article class="card" data-reveal>
             <div class="thumb" aria-hidden="true">
-              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="NXSRP project">
                 <rect width="800" height="500" fill="#0b0b0b"></rect>
               </svg>
             </div>
             <div class="meta">
-              <h3>Project Gamma</h3>
-              <p>Interactive prototype exploring input and simple physics logic.</p>
-              <div style="margin-top:.6rem"><span class="chip">Canvas</span><span class="chip">JS</span><span class="chip">Prototype</span></div>
+              <h3>NXSRP</h3>
+              <p>Current FiveM server — I own it and I'm the main developer. Building scripts, UI and web front-ends.</p>
+              <div style="margin-top:.6rem"><span class="chip">FiveM</span><span class="chip">Lua</span><span class="chip">HTML/CSS</span></div>
             </div>
           </article>
         </div>
@@ -245,15 +255,14 @@
     <section id="about" class="about" aria-label="About" data-reveal>
       <div class="inner">
         <h2>About</h2>
-        <p class="bio">I am Lynex0 — a developer experienced in <strong>HTML, CSS, LUA, PYTHON, and SQL</strong>. I prefer pragmatic, maintainable solutions: semantic markup, logical CSS structure, and small, testable scripts.</p>
+        <p class="bio">I am <strong>Lynex0</strong> — a FiveM Developer. I work to deliver the most performant and best-looking FiveM scripts, websites and UIs. I focus on server-side tooling, polished front-ends and maintainable code.</p>
 
         <div class="skills" style="margin-top:1.6rem">
           <h3 style="margin:0 0 .6rem 0">Skills</h3>
-          <div class="skill"><strong>HTML & CSS</strong><div class="progress"><i style="width:92%"></i></div></div>
-          <div class="skill"><strong>JavaScript</strong><div class="progress"><i style="width:86%"></i></div></div>
-          <div class="skill"><strong>Lua</strong><div class="progress"><i style="width:78%"></i></div></div>
-          <div class="skill"><strong>Python</strong><div class="progress"><i style="width:76%"></i></div></div>
-          <div class="skill"><strong>SQL</strong><div class="progress"><i style="width:74%"></i></div></div>
+          <div class="skill"><strong>HTML & CSS</strong><div class="progress"><i style="width:90%"></i></div></div>
+          <div class="skill"><strong>Lua</strong><div class="progress"><i style="width:80%"></i></div></div>
+          <div class="skill"><strong>Python</strong><div class="progress"><i style="width:100%"></i></div></div>
+          <div class="skill"><strong>SQL</strong><div class="progress"><i style="width:90%"></i></div></div>
         </div>
       </div>
     </section>
@@ -263,14 +272,23 @@
       <div class="inner">
         <h2>Experience</h2>
         <div class="timeline-list" style="margin-top:1.6rem">
-          <div style="padding:1.4rem;background:var(--surface);border-radius:12px">
-            <strong>2022 — present</strong>
-            <div style="color:var(--muted);margin-top:.6rem">Freelance projects and tool development (front-end, scripts, database work).</div>
+          <div style="padding:1.6rem;background:var(--surface);border-radius:12px">
+            <strong>2020 — 2021</strong>
+            <div style="color:var(--muted);margin-top:.6rem">Interest in Linux and server functionality; exploring system tools and environments.</div>
           </div>
+
           <div style="height:1.4rem"></div>
-          <div style="padding:1.4rem;background:var(--surface);border-radius:12px">
-            <strong>2020 — 2022</strong>
-            <div style="color:var(--muted);margin-top:.6rem">In-house UI work and performance optimization.</div>
+
+          <div style="padding:1.6rem;background:var(--surface);border-radius:12px">
+            <strong>2022 — 2023</strong>
+            <div style="color:var(--muted);margin-top:.6rem">Founded Aspect — worked heavily with Python and server tooling.</div>
+          </div>
+
+          <div style="height:1.4rem"></div>
+
+          <div style="padding:1.6rem;background:var(--surface);border-radius:12px">
+            <strong>2024 — 2025</strong>
+            <div style="color:var(--muted);margin-top:.6rem">CNE and then NXSRP — deepened work in Lua and front-end (HTML & CSS) for FiveM projects.</div>
           </div>
         </div>
       </div>
@@ -281,6 +299,7 @@
       <div class="inner">
         <h2>Contact</h2>
         <form id="contactForm" class="card-form" aria-label="Contact form" style="margin-top:1.6rem">
+          <!-- Set action & method to your endpoint when ready -->
           <div class="form-row">
             <input name="name" type="text" placeholder="Your name" required aria-label="Name">
             <input name="email" type="email" placeholder="Email" required aria-label="Email">
@@ -295,15 +314,15 @@
       </div>
     </section>
 
-    <footer aria-label="Footer" style="padding-bottom:6rem">
-      <div class="inner" style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start">
-        <div>© <span id="year"></span> Lynex0</div>
-        <div style="color:var(--muted)">Built with clarity — HTML · CSS · LUA · PYTHON · SQL</div>
+    <footer aria-label="Footer">
+      <div class="inner">
+        <!-- Footer per your request: only © _Lynex0 -->
+        <div style="color:var(--muted)">© _Lynex0</div>
       </div>
     </footer>
   </main>
 
-  <!-- Modal (kept minimal) -->
+  <!-- Modal minimal -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop" tabindex="-1"></div>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -315,34 +334,35 @@
 
   <script>
     // utilities & interactions
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.remove('is-revealed'));
+    document.getElementById('year')?.remove?.(); // not used now
 
-    // IntersectionObserver reveal with stagger and position-based delay
+    // IntersectionObserver tuned for smoother reveal
     const revealEls = document.querySelectorAll('[data-reveal]');
     const obs = new IntersectionObserver((entries, o) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           const rect = entry.target.getBoundingClientRect();
-          const posFactor = Math.max(0, Math.floor(rect.top / 140));
-          const baseDelay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0) * 80;
-          const delay = Math.min(1200, baseDelay + posFactor * 120);
+          const posFactor = Math.max(0, Math.floor(rect.top / 160));
+          const baseDelay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0) * 90;
+          const delay = Math.min(1500, baseDelay + posFactor * 140);
           setTimeout(()=> entry.target.classList.add('is-revealed'), delay);
           o.unobserve(entry.target);
         }
       });
-    }, {threshold: 0.12, rootMargin: '0px 0px -10% 0px'});
+    }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
 
     revealEls.forEach((el, i) => {
       el.datasetIndex = i % 6;
       obs.observe(el);
     });
 
-    // micro fade lines
+    // micro-fade intro lines
     document.querySelectorAll('.micro-fade').forEach((el, idx) => {
-      setTimeout(()=> el.classList.add('show'), 240 + idx * 140);
+      setTimeout(()=> el.classList.add('show'), 260 + idx * 160);
     });
 
-    // modal simple handlers (kept for future expansion)
+    // modal basic handlers (for future use)
     const modal = document.getElementById('modal');
     const modalClose = document.getElementById('modalClose');
     const modalTitle = document.getElementById('modalTitle');
@@ -372,7 +392,7 @@
     modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
     document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
 
-    // contact form demo
+    // contact form demo (no external submit)
     const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMessage');
     form.addEventListener('submit', (e) => {
@@ -383,7 +403,7 @@
       setTimeout(()=> formMsg.style.display = 'none', 4200);
     });
 
-    // basic a11y: Enter key activation
+    // Enter key activation a11y
     document.querySelectorAll('a, button').forEach(el => {
       el.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') el.click();
@@ -391,4 +411,4 @@
     });
   </script>
 </body>
-</html>
+                                                   </html>
