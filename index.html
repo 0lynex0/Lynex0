@@ -10,13 +10,13 @@
   <style>
     /* -------------------------
        Mono design tokens (black & white only)
-       Mobile-first, large vertical spacing, NO header / sidebar
+       Mobile-first, giant vertical gaps so each section ~1 viewport
        ------------------------- */
     :root{
-      --bg: #050505;           /* deep black */
-      --surface: #0b0b0b;      /* slightly lighter panel */
-      --muted: #bfbfbf;        /* muted text */
-      --text: #ffffff;         /* pure white */
+      --bg: #050505;
+      --surface: #0b0b0b;
+      --muted: #bfbfbf;
+      --text: #ffffff;
       --glass: rgba(255,255,255,0.03);
       --shadow: 0 18px 50px rgba(0,0,0,0.75);
       --radius-lg: 16px;
@@ -26,9 +26,6 @@
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    /* -------------------------
-       Base (mobile-first)
-       ------------------------- */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -41,189 +38,156 @@
       font-size:16px;
       scroll-behavior:smooth;
     }
-    .container{max-width:var(--container);margin:0 auto;padding:2rem 1rem;}
+    .container{max-width:var(--container);margin:0 auto;padding:0 1rem;}
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
     /* -------------------------
-       Removed header / nav entirely
+       IMPORTANT:
+       Each main section is intentionally tall.
+       On mobile default: min-height ~100vh with centered content.
+       On desktop larger vertical padding so next section appears after ~1 screen scroll.
        ------------------------- */
-    /* intentionally empty; no top bar */
-
-    /* -------------------------
-       Hero - single column, big spacing
-       ------------------------- */
-    .hero{
-      padding:8rem 0 6rem 0;
-      display:block;
-      gap:2rem;
+    section {
+      position:relative;
+      min-height:100vh;                 /* ensure full viewport height */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18vh 1rem;                /* vertical breathing room (mobile) */
     }
-    .hero .eyebrow{color:var(--muted);font-weight:600;margin-bottom:.8rem}
+
+    /* inner container centers content and limits width */
+    .inner { max-width:900px; margin:0 auto; width:100%; }
+
+    h1,h2{margin:0 0 1rem 0}
+    p{margin:0 0 1rem 0}
+
+    /* hero specifics */
+    .eyebrow{color:var(--muted);font-weight:600;margin-bottom:.8rem}
     .hero h1{
-      margin:0;font-weight:800;line-height:1.02;
-      font-size:clamp(2rem,6vw,3.4rem);
+      font-weight:800;line-height:1.02;
+      font-size:clamp(2rem,6vw,3.6rem);
       letter-spacing:-0.6px;
     }
-    .hero p.lead{color:var(--muted);margin-top:1.2rem;max-width:60ch}
-    .hero .actions{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+    .lead{color:var(--muted);max-width:60ch;font-size:1rem}
 
-    /* right visual now placed under text on all sizes by default */
+    .actions{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+    .cta-primary{
+      display:inline-flex;align-items:center;gap:.6rem;padding:12px 16px;border-radius:14px;
+      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);font-weight:700;cursor:pointer;
+      transition:transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
+    }
+    .cta-primary:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(255,255,255,0.02)}
+    .cta-ghost{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+
+    /* hero visual centered under text */
     .hero-visual{
-      margin-top:2.25rem;
+      margin-top:3rem;
       background:var(--surface);border-radius:var(--radius-lg); padding:1rem; position:relative; overflow:hidden;
-      height:320px; display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
+      height:360px; display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
       transform:translateY(0); transition:transform 600ms cubic-bezier(.2,.9,.2,1);
     }
-    .hero-visual.floating{animation:floaty 6s ease-in-out infinite}
-    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-8px)} 100%{transform:translateY(0)} }
+    .floating{animation:floaty 6s ease-in-out infinite}
+    @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
 
-    /* -------------------------
-       Projects grid (stacked / single column on mobile)
-       bigger gaps
-       ------------------------- */
-    section.projects{padding:6.5rem 0}
-    .projects h2{margin-bottom:2.6rem}
+    /* Projects */
     .projects .grid{display:grid;grid-template-columns:1fr;gap:1.6rem}
-    .card{
-      background:var(--surface);border-radius:var(--radius-md);overflow:hidden;position:relative;
-      transition:transform 420ms cubic-bezier(.2,.9,.2,1), box-shadow 420ms;
-      box-shadow: 0 14px 38px rgba(0,0,0,0.6);
-    }
+    .card{background:var(--surface);border-radius:var(--radius-md);overflow:hidden;position:relative;padding-bottom:0;box-shadow:0 14px 38px rgba(0,0,0,0.6);transition:transform 420ms}
     .card:hover{transform:translateY(-8px)}
-    .card .thumb{height:200px;overflow:hidden}
-    .card img{width:100%;height:100%;object-fit:cover;display:block}
-    .card .meta{padding:1.2rem}
-    .card h3{margin:0 0 .4rem;font-size:1.06rem}
-    .card p{margin:0;color:var(--muted);font-size:.98rem}
-    .card .tags{margin-top:.8rem;display:flex;gap:.45rem;flex-wrap:wrap}
-    .chip{background:rgba(255,255,255,0.02);padding:.36rem .66rem;border-radius:999px;font-size:.82rem;color:var(--muted)}
+    .thumb{height:220px;overflow:hidden}
+    .meta{padding:1.2rem}
+    .chip{background:rgba(255,255,255,0.02);padding:.36rem .66rem;border-radius:999px;font-size:.82rem;color:var(--muted);margin-right:.4rem}
 
-    .card .overlay{
-      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.42);opacity:0;transition:opacity 260ms ease;
-    }
-    .card:hover .overlay{opacity:1}
-    .overlay .view-btn{
-      background:transparent;color:var(--text);padding:.6rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.06);font-weight:700;cursor:pointer;
-      transition:transform 180ms ease;
-    }
-    .overlay .view-btn:hover{transform:translateY(-6px)}
-
-    /* -------------------------
-       About & skills vertical stacking & spacing
-       ------------------------- */
-    section.about{display:block;padding:6.5rem 0;gap:1.6rem}
-    .bio{color:var(--muted);line-height:1.7;font-size:1.02rem;margin-bottom:1.25rem}
+    /* about / skills stacked */
+    .about .bio{color:var(--muted);line-height:1.7;font-size:1.02rem;margin-bottom:1.25rem}
     .skills{background:var(--surface);padding:1.25rem;border-radius:14px}
     .skill{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0}
-    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:60%;margin-left:1rem}
-    .progress > i{display:block;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.82));width:60%;}
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:60%}
+    .progress>i{display:block;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.82));width:60%}
 
-    /* -------------------------
-       Timeline (optional) - stacked with large gaps
-       ------------------------- */
-    section.timeline{padding:6.5rem 0}
-    .timeline-list{display:grid;gap:1.6rem;max-width:780px}
+    /* timeline stacked visually separated */
+    .timeline-list{display:grid;gap:1.6rem}
 
-    /* -------------------------
-       Contact - generous spacing, stacked fields
-       ------------------------- */
-    section.contact{padding:7rem 0}
-    form.card-form{background:var(--surface);padding:1.6rem;border-radius:14px;display:grid;gap:1rem;max-width:760px}
-    .form-row{display:grid;grid-template-columns:1fr;gap:.9rem} /* stacked inputs on mobile by default */
-    input,textarea{
-      background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:.85rem;border-radius:10px;font-size:1rem;
-    }
+    /* contact form */
+    .card-form{background:var(--surface);padding:1.6rem;border-radius:14px;display:grid;gap:1rem;max-width:760px}
+    .form-row{display:grid;grid-template-columns:1fr;gap:.9rem}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:.85rem;border-radius:10px;font-size:1rem}
     textarea{min-height:160px;resize:vertical}
     .form-actions{display:flex;flex-direction:column;gap:.8rem;align-items:flex-start}
-    .note{color:var(--muted);font-size:.95rem}
 
-    /* -------------------------
-       Footer only simple
-       ------------------------- */
-    footer.site-footer{padding:3.2rem 0;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted)}
+    footer{padding:2rem 1rem;color:var(--muted)}
 
-    /* -------------------------
-       Reveal utility (initial state) + stagger
-       ------------------------- */
+    /* reveal utility */
     [data-reveal]{opacity:0;transform:translateY(22px) scale(.996);transition:opacity 640ms cubic-bezier(.2,.9,.2,1), transform 640ms cubic-bezier(.2,.9,.2,1)}
     [data-reveal].is-revealed{opacity:1;transform:none}
-
     .micro-fade{opacity:0;transform:translateY(8px);transition:opacity 520ms ease, transform 520ms ease}
     .micro-fade.show{opacity:1;transform:none}
 
-    /* -------------------------
-       Modal
-       ------------------------- */
+    /* modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:120}
     .modal.is-open{display:flex}
     .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.75);backdrop-filter: blur(6px)}
     .modal-panel{position:relative;background:var(--surface);padding:1.25rem;border-radius:12px;max-width:920px;width:calc(100% - 2rem);z-index:10;box-shadow:var(--shadow)}
     .modal-panel .close{position:absolute;right:10px;top:10px;border:0;background:transparent;color:var(--muted);font-size:1.1rem;cursor:pointer}
 
-    /* Accessibility focus */
-    a:focus, button:focus, input:focus, textarea:focus{outline:none;box-shadow:var(--focus)}
-
-    /* -------------------------
-       Desktop adjustments (wider screens)
-       We'll keep stacked flow but increase max widths & spacing
-       ------------------------- */
+    /* larger screens: increase vertical spacing so each section >1 viewport */
     @media (min-width:900px){
-      .container{padding:3rem;}
-      .projects .grid{grid-template-columns:repeat(2,1fr);gap:2rem; max-width:920px}
-      .hero{padding:10rem 0 8rem 0}
-      .hero-visual{height:360px}
-      .form-row{grid-template-columns:1fr 1fr} /* side-by-side inputs on desktop */
-      .form-actions{flex-direction:row;align-items:center}
-      section.projects{padding:7.5rem 0}
-      section.about{padding:7.5rem 0}
-      section.contact{padding:8rem 0}
+      section{ padding:28vh 2rem; min-height:110vh } /* big vertical padding so you must scroll ~1 screen */
+      .projects .grid{grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1100px}
+      .hero-visual{height:420px}
+      .card .thumb{height:260px}
+      .form-row{grid-template-columns:1fr 1fr}
+      .form-actions{flex-direction:row;align-items:center;gap:1rem}
     }
 
-    @media (min-width:1200px){
-      .projects .grid{grid-template-columns:repeat(3,1fr);gap:2.25rem; max-width:1100px}
-      .hero{display:block}
-      .hero-visual{height:420px}
+    @media (min-width:1400px){
+      section{ padding:32vh 3rem; min-height:120vh } /* even bigger on very wide screens */
+      .projects .grid{grid-template-columns:repeat(3,1fr)}
+      .hero-visual{height:480px}
     }
+
+    /* accessibility focus */
+    a:focus, button:focus, input:focus, textarea:focus{outline:none;box-shadow:var(--focus)}
   </style>
 </head>
 <body>
   <main>
     <!-- HERO -->
-    <section id="hero" class="hero container" aria-label="Intro">
-      <div data-reveal class="hero-copy">
+    <section id="hero" aria-label="Intro" data-reveal>
+      <div class="inner">
         <div class="eyebrow">Hello — I am</div>
         <h1>Lynex0<br><span style="font-weight:700">front-end & generalist</span></h1>
         <p class="lead">I work with <strong>HTML, CSS, LUA, PYTHON and SQL</strong> to build clean, performant web experiences. I focus on practical UI details, accessibility and maintainable code.</p>
         <div class="actions">
-          <a class="cta-primary" href="#projects" style="border-radius:12px;padding:10px 14px;border:1px solid rgba(255,255,255,0.06)">See projects</a>
-          <a class="cta-ghost" href="#contact" style="padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)">Get in touch</a>
+          <a class="cta-primary" href="#projects">See projects</a>
+          <a class="cta-ghost" href="#contact">Get in touch</a>
         </div>
 
-        <!-- micro intro lines with subtle staged animation -->
-        <div style="margin-top:1.6rem;display:flex;flex-direction:column;gap:.5rem">
-          <div class="micro-fade" style="transition-delay:120ms">• Specialised in semantic HTML & scalable CSS architecture</div>
-          <div class="micro-fade" style="transition-delay:240ms">• Comfortable scripting: Lua, Python; and DB work with SQL</div>
-          <div class="micro-fade" style="transition-delay:360ms">• Prioritise accessibility, performance and simplicity</div>
+        <div style="margin-top:2.2rem;display:flex;flex-direction:column;gap:.6rem">
+          <div class="micro-fade" style="transition-delay:120ms">• Semantic HTML & scalable CSS architecture</div>
+          <div class="micro-fade" style="transition-delay:240ms">• Scripting: Lua, Python; DB: SQL</div>
+          <div class="micro-fade" style="transition-delay:360ms">• Accessibility, performance & maintainability</div>
         </div>
-      </div>
 
-      <div data-reveal class="hero-visual floating" aria-hidden="true">
-        <div style="width:100%;height:100%;border-radius:12px;display:flex;flex-direction:column;gap:12px; padding:18px;box-sizing:border-box">
-          <div style="height:46px;display:flex;align-items:center;gap:10px">
-            <div style="width:10px;height:10px;border-radius:50%;background:#fff;opacity:.06"></div>
-            <div style="height:12px;width:60%;background:rgba(255,255,255,0.04);border-radius:8px"></div>
-          </div>
-          <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px">
-              <div style="height:10px;width:80%;background:rgba(255,255,255,0.04);border-radius:6px"></div>
-              <div style="height:10px;width:40%;background:rgba(255,255,255,0.03);border-radius:6px"></div>
-              <div style="height:36px;width:100%;background:rgba(255,255,255,0.04);border-radius:8px;align-self:end"></div>
+        <div class="hero-visual floating" aria-hidden="true" style="margin-top:3.2rem">
+          <div style="width:100%;height:100%;border-radius:12px;display:flex;flex-direction:column;gap:12px; padding:18px;box-sizing:border-box">
+            <div style="height:46px;display:flex;align-items:center;gap:10px">
+              <div style="width:10px;height:10px;border-radius:50%;background:#fff;opacity:.06"></div>
+              <div style="height:12px;width:60%;background:rgba(255,255,255,0.04);border-radius:8px"></div>
             </div>
-            <div style="background:rgba(255,255,255,0.01);border-radius:10px;display:flex;align-items:center;justify-content:center">
-              <svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect width="120" height="80" rx="8" fill="#111"></rect>
-              </svg>
+            <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px">
+                <div style="height:10px;width:80%;background:rgba(255,255,255,0.04);border-radius:6px"></div>
+                <div style="height:10px;width:40%;background:rgba(255,255,255,0.03);border-radius:6px"></div>
+                <div style="height:36px;width:100%;background:rgba(255,255,255,0.04);border-radius:8px;align-self:end"></div>
+              </div>
+              <div style="background:rgba(255,255,255,0.01);border-radius:10px;display:flex;align-items:center;justify-content:center">
+                <svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="120" height="80" rx="8" fill="#111"></rect>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -231,171 +195,154 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="projects container" aria-label="Projects">
-      <h2 data-reveal>Projects</h2>
-      <div class="grid" aria-live="polite">
-        <!-- Card 1 -->
-        <article class="card" data-reveal>
-          <div class="thumb" aria-hidden="true">
-            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
-              <rect width="800" height="500" fill="#0b0b0b"></rect>
-            </svg>
-          </div>
-          <div class="overlay" aria-hidden="true">
-            <button class="view-btn" data-project='{"title":"Project Alpha","desc":"Landing and micro-interactions. Built with HTML/CSS/JS."}'>View</button>
-          </div>
-          <div class="meta">
-            <h3>Project Alpha</h3>
-            <p>Landing with refined micro-interactions and progressive enhancement.</p>
-            <div class="tags">
-              <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span>
+    <section id="projects" class="projects" aria-label="Projects" data-reveal>
+      <div class="inner">
+        <h2>Projects</h2>
+        <div class="grid" aria-live="polite" style="margin-top:2.4rem">
+          <article class="card" data-reveal>
+            <div class="thumb" aria-hidden="true">
+              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+                <rect width="800" height="500" fill="#0b0b0b"></rect>
+              </svg>
             </div>
-          </div>
-        </article>
+            <div class="meta">
+              <h3>Project Alpha</h3>
+              <p>Landing with refined micro-interactions and progressive enhancement.</p>
+              <div style="margin-top:.6rem"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span></div>
+            </div>
+          </article>
 
-        <!-- Card 2 -->
-        <article class="card" data-reveal>
-          <div class="thumb" aria-hidden="true">
-            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
-              <rect width="800" height="500" fill="#0b0b0b"></rect>
-            </svg>
-          </div>
-          <div class="overlay" aria-hidden="true">
-            <button class="view-btn" data-project='{"title":"Project Beta","desc":"Data dashboard prototype with thoughtful layout and filters."}'>View</button>
-          </div>
-          <div class="meta">
-            <h3>Project Beta</h3>
-            <p>Dashboard focused on readability and fast client-side filtering.</p>
-            <div class="tags">
-              <span class="chip">UI</span><span class="chip">Dashboard</span><span class="chip">UX</span>
+          <article class="card" data-reveal>
+            <div class="thumb" aria-hidden="true">
+              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+                <rect width="800" height="500" fill="#0b0b0b"></rect>
+              </svg>
             </div>
-          </div>
-        </article>
+            <div class="meta">
+              <h3>Project Beta</h3>
+              <p>Dashboard focused on readability and fast client-side filtering.</p>
+              <div style="margin-top:.6rem"><span class="chip">UI</span><span class="chip">Dashboard</span><span class="chip">UX</span></div>
+            </div>
+          </article>
 
-        <!-- Card 3 -->
-        <article class="card" data-reveal>
-          <div class="thumb" aria-hidden="true">
-            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
-              <rect width="800" height="500" fill="#0b0b0b"></rect>
-            </svg>
-          </div>
-          <div class="overlay" aria-hidden="true">
-            <button class="view-btn" data-project='{"title":"Project Gamma","desc":"Interactive prototype / small game built with Canvas + JS."}'>View</button>
-          </div>
-          <div class="meta">
-            <h3>Project Gamma</h3>
-            <p>Interactive prototype exploring input and simple physics logic.</p>
-            <div class="tags">
-              <span class="chip">Canvas</span><span class="chip">JS</span><span class="chip">Prototype</span>
+          <article class="card" data-reveal>
+            <div class="thumb" aria-hidden="true">
+              <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Project screenshot">
+                <rect width="800" height="500" fill="#0b0b0b"></rect>
+              </svg>
             </div>
-          </div>
-        </article>
+            <div class="meta">
+              <h3>Project Gamma</h3>
+              <p>Interactive prototype exploring input and simple physics logic.</p>
+              <div style="margin-top:.6rem"><span class="chip">Canvas</span><span class="chip">JS</span><span class="chip">Prototype</span></div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="about container" aria-label="About">
-      <div data-reveal>
+    <section id="about" class="about" aria-label="About" data-reveal>
+      <div class="inner">
         <h2>About</h2>
         <p class="bio">I am Lynex0 — a developer experienced in <strong>HTML, CSS, LUA, PYTHON, and SQL</strong>. I prefer pragmatic, maintainable solutions: semantic markup, logical CSS structure, and small, testable scripts.</p>
-      </div>
 
-      <div data-reveal class="skills" aria-label="Skills">
-        <h3 style="margin:0 0 .6rem 0">Skills</h3>
-        <div class="skill"><strong>HTML & CSS</strong><div class="progress"><i style="width:92%"></i></div></div>
-        <div class="skill"><strong>JavaScript</strong><div class="progress"><i style="width:86%"></i></div></div>
-        <div class="skill"><strong>Lua</strong><div class="progress"><i style="width:78%"></i></div></div>
-        <div class="skill"><strong>Python</strong><div class="progress"><i style="width:76%"></i></div></div>
-        <div class="skill"><strong>SQL</strong><div class="progress"><i style="width:74%"></i></div></div>
+        <div class="skills" style="margin-top:1.6rem">
+          <h3 style="margin:0 0 .6rem 0">Skills</h3>
+          <div class="skill"><strong>HTML & CSS</strong><div class="progress"><i style="width:92%"></i></div></div>
+          <div class="skill"><strong>JavaScript</strong><div class="progress"><i style="width:86%"></i></div></div>
+          <div class="skill"><strong>Lua</strong><div class="progress"><i style="width:78%"></i></div></div>
+          <div class="skill"><strong>Python</strong><div class="progress"><i style="width:76%"></i></div></div>
+          <div class="skill"><strong>SQL</strong><div class="progress"><i style="width:74%"></i></div></div>
+        </div>
       </div>
     </section>
 
-    <!-- TIMELINE (optional) -->
-    <section class="timeline container" aria-label="Experience">
-      <h2 data-reveal>Experience</h2>
-      <div class="timeline-list" data-reveal>
-        <div style="padding:1.2rem;background:var(--surface);border-radius:12px">
-          <strong>2022 — present</strong>
-          <div style="color:var(--muted);margin-top:.4rem">Freelance projects and tool development (front-end, scripts, database work).</div>
-        </div>
-        <div style="height:1.2rem"></div>
-        <div style="padding:1.2rem;background:var(--surface);border-radius:12px">
-          <strong>2020 — 2022</strong>
-          <div style="color:var(--muted);margin-top:.4rem">In-house UI work and performance optimization.</div>
+    <!-- TIMELINE -->
+    <section class="timeline" aria-label="Experience" data-reveal>
+      <div class="inner">
+        <h2>Experience</h2>
+        <div class="timeline-list" style="margin-top:1.6rem">
+          <div style="padding:1.4rem;background:var(--surface);border-radius:12px">
+            <strong>2022 — present</strong>
+            <div style="color:var(--muted);margin-top:.6rem">Freelance projects and tool development (front-end, scripts, database work).</div>
+          </div>
+          <div style="height:1.4rem"></div>
+          <div style="padding:1.4rem;background:var(--surface);border-radius:12px">
+            <strong>2020 — 2022</strong>
+            <div style="color:var(--muted);margin-top:.6rem">In-house UI work and performance optimization.</div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact container" aria-label="Contact">
-      <h2 data-reveal>Contact</h2>
-      <form id="contactForm" class="card-form" data-reveal aria-label="Contact form">
-        <!-- NOTE: set action & method to your endpoint (Formspree or custom API) -->
-        <div class="form-row">
-          <input name="name" type="text" placeholder="Your name" required aria-label="Name">
-          <input name="email" type="email" placeholder="Email" required aria-label="Email">
-        </div>
-        <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
-        <div class="form-actions">
-          <button type="submit" class="cta-primary" style="border-radius:12px;padding:10px 14px;border:1px solid rgba(255,255,255,0.06)">Send message</button>
-          <div class="note">Prefer email? Write to: <strong>lynex0@example.com</strong></div>
-        </div>
-        <div id="formMessage" role="status" aria-live="polite" style="color:var(--text);display:none;margin-top:.6rem"></div>
-      </form>
+    <section id="contact" class="contact" aria-label="Contact" data-reveal>
+      <div class="inner">
+        <h2>Contact</h2>
+        <form id="contactForm" class="card-form" aria-label="Contact form" style="margin-top:1.6rem">
+          <div class="form-row">
+            <input name="name" type="text" placeholder="Your name" required aria-label="Name">
+            <input name="email" type="email" placeholder="Email" required aria-label="Email">
+          </div>
+          <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
+          <div class="form-actions">
+            <button type="submit" class="cta-primary">Send message</button>
+            <div class="note">Prefer email? Write to: <strong>lynex0@example.com</strong></div>
+          </div>
+          <div id="formMessage" role="status" aria-live="polite" style="color:var(--text);display:none;margin-top:.6rem"></div>
+        </form>
+      </div>
     </section>
 
-    <footer class="site-footer container" aria-label="Footer">
-      <div style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start">
+    <footer aria-label="Footer" style="padding-bottom:6rem">
+      <div class="inner" style="display:flex;flex-direction:column;gap:.6rem;align-items:flex-start">
         <div>© <span id="year"></span> Lynex0</div>
         <div style="color:var(--muted)">Built with clarity — HTML · CSS · LUA · PYTHON · SQL</div>
       </div>
     </footer>
   </main>
 
-  <!-- Modal for project detail -->
+  <!-- Modal (kept minimal) -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop" tabindex="-1"></div>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="close" aria-label="Close" id="modalClose">✕</button>
       <h3 id="modalTitle">Project</h3>
       <p id="modalDesc" style="color:var(--muted)"></p>
-      <div style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-        <div style="background:var(--surface);height:160px;border-radius:8px"></div>
-        <div style="background:var(--surface);height:160px;border-radius:8px"></div>
-      </div>
     </div>
   </div>
 
   <script>
-    // small utilities & interactions
+    // utilities & interactions
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // reveal on scroll with IntersectionObserver and stronger stagger
+    // IntersectionObserver reveal with stagger and position-based delay
     const revealEls = document.querySelectorAll('[data-reveal]');
     const obs = new IntersectionObserver((entries, o) => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           const rect = entry.target.getBoundingClientRect();
           const posFactor = Math.max(0, Math.floor(rect.top / 140));
-          const baseDelay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0) * 70;
-          const delay = Math.min(900, baseDelay + posFactor * 90);
+          const baseDelay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0) * 80;
+          const delay = Math.min(1200, baseDelay + posFactor * 120);
           setTimeout(()=> entry.target.classList.add('is-revealed'), delay);
           o.unobserve(entry.target);
         }
       });
-    }, {threshold: 0.12, rootMargin: '0px 0px -6% 0px'});
+    }, {threshold: 0.12, rootMargin: '0px 0px -10% 0px'});
 
     revealEls.forEach((el, i) => {
       el.datasetIndex = i % 6;
       obs.observe(el);
     });
 
-    // reveal micro lines
+    // micro fade lines
     document.querySelectorAll('.micro-fade').forEach((el, idx) => {
       setTimeout(()=> el.classList.add('show'), 240 + idx * 140);
     });
 
-    // Project modal logic
+    // modal simple handlers (kept for future expansion)
     const modal = document.getElementById('modal');
     const modalClose = document.getElementById('modalClose');
     const modalTitle = document.getElementById('modalTitle');
@@ -425,7 +372,7 @@
     modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
     document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
 
-    // contact form (demo)
+    // contact form demo
     const form = document.getElementById('contactForm');
     const formMsg = document.getElementById('formMessage');
     form.addEventListener('submit', (e) => {
@@ -436,7 +383,7 @@
       setTimeout(()=> formMsg.style.display = 'none', 4200);
     });
 
-    // keyboard activation for anchors & buttons (a11y small helper)
+    // basic a11y: Enter key activation
     document.querySelectorAll('a, button').forEach(el => {
       el.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') el.click();
