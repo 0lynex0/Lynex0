@@ -29,54 +29,54 @@
        Base (mobile-first)
        ------------------------- */
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--bg), #020202 140%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.6;
-      font-size:16px;
-      scroll-behavior:smooth;
+    /* ensure root also has the gradient so nothing white shows behind the scrollbar */
+    html, body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(180deg, var(--bg), #020202 140%);
+    background-color: var(--bg); /* fallback for UA that ignores gradient on some areas */
+    color: var(--text);
+    color-scheme: dark; /* hint browsers to use dark UI for scrollbars/etc. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    font-size: 16px;
+    scroll-behavior: smooth;
     }
+
     .container{max-width:var(--container);margin:0 auto;padding:2rem 1rem;}
 
-    /* celý scrollbar */
+        /* scrollbar */
     ::-webkit-scrollbar {
     width: 8px;
     }
 
-      /* celý scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    
-    /* pozadí scrollbar tracku */
+    /* dráha scrollbar (pozadí) */
     ::-webkit-scrollbar-track {
-      background: linear-gradient(180deg, var(--bg), #020202 140%);
-      border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0); /* zcela průhledné */
+    border: none;
     }
-    
-    /* samotný "jezdec" scrollbar */
+
+    /* jezdec scrollbar */
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.15));
-      border-radius: 10px;
-      backdrop-filter: blur(4px); /* “frosted glass” efekt */
-      -webkit-backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.1); /* jemný obrys */
+    background-color: rgba(0, 0, 0, 0); /* jemně bílý */
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0); /* aby nevznikal světlý okraj */
+    transition: background 0.3s ease;
     }
-    
-    /* hover efekt – víc kontrastu */
+
+    /* hover efekt */
     ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+    background-color: rgb(70, 70, 70);
     }
-    
+
     /* Firefox */
     html {
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(49, 49, 49) transparent;
     }
+
+
 
 
 
@@ -457,5 +457,4 @@
     });
   </script>
 </body>
-
                                                    </html>
