@@ -97,12 +97,22 @@
     }
     .inner { max-width:960px; margin:0 auto; width:100%; }
 
-    h1,h2{margin:0 0 1rem 0; max-width: 300px;}
+    h1,h2{margin:0 0 1rem 0; max-width: 300px;transition: transform 1s ease-out;}
     h1:hover, h2:hover {
     text-shadow: 2px 2px 20px #9f00ff;
     transform: scale(1.2);
-    transition: transform 1s ease-out;
     }
+
+    article.card.is-revealed {
+      transition: transform 1s ease-out;
+    }
+
+    article.card.is-revealed:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 24px 60px rgba(255, 255, 255, 0.02);
+    }
+
+
     p{margin:0 0 1rem 0}
 
     /* Hero specifics */
