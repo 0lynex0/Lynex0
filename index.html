@@ -123,6 +123,24 @@
       letter-spacing:-0.6px;
     }
 
+
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      pointer-events: none; /* aby neblokovala klikání */
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      box-shadow: 0 0 10px rgba(180, 100, 255, 0.7);
+    }
+
     .lead{color:var(--muted);max-width:60ch;font-size:1rem}
 
     .actions{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
@@ -213,6 +231,11 @@
       .projects .grid{grid-template-columns:repeat(3,1fr)}
       .hero-visual{height:480px}
     }
+
+    @media (hover: none), (pointer: coarse) {
+      .cursor-dot{display:none!important}
+    }
+
   </style>
 </head>
 <body>
@@ -471,6 +494,31 @@
         if(e.key === 'Enter') el.click();
       });
     });
+
+    const dot = document.querySelector('.cursor-dot');
+    if(dot){
+      let x = window.innerWidth/2, y = window.innerHeight/2;
+      let targetX = x, targetY = y;
+      const offsetX = -6; // posun doleva
+      const offsetY = -2; // lehce nahoru
+
+      window.addEventListener('mousemove', e => {
+        targetX = e.clientX + offsetX;
+        targetY = e.clientY + offsetY;
+      });
+
+      function animateDot(){
+        x += (targetX - x) * 0.15;
+        y += (targetY - y) * 0.15;
+        dot.style.left = x + 'px';
+        dot.style.top = y + 'px';
+        requestAnimationFrame(animateDot);
+      }
+
+      dot.style.left = x + 'px';
+      dot.style.top = y + 'px';
+      requestAnimationFrame(animateDot);
+    }
   </script>
 </body>
                                                    </html>
