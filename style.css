@@ -245,6 +245,13 @@
       filter: blur(0);
     }
 
+    hr{
+      border: none;
+      height: 2px;
+      background: #c50c0cce;
+      margin: 4rem 0;
+      box-shadow: 0 0 10px #ff0000;
+    }
 
     .micro-fade{
       opacity:0;
