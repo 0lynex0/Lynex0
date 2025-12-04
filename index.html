@@ -8,9 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* -------------------------
-       Tokens - pure monochrome
-       ------------------------- */
     :root{
       --bg: #050505;
       --surface: #0b0b0b;
@@ -25,18 +22,14 @@
       font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    /* -------------------------
-       Base (mobile-first)
-       ------------------------- */
     *{box-sizing:border-box}
-    /* ensure root also has the gradient so nothing white shows behind the scrollbar */
     html, body {
     height: 100%;
     margin: 0;
     background: linear-gradient(180deg, var(--bg), #020202 140%);
-    background-color: var(--bg); /* fallback for UA that ignores gradient on some areas */
+    background-color: var(--bg); 
     color: var(--text);
-    color-scheme: dark; /* hint browsers to use dark UI for scrollbars/etc. */
+    color-scheme: dark; 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
@@ -46,31 +39,31 @@
 
     .container{max-width:var(--container);margin:0 auto;padding:2rem 1rem;}
 
-        /* scrollbar */
+       
     ::-webkit-scrollbar {
     width: 8px;
     }
 
-    /* dráha scrollbar (pozadí) */
+    
     ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0); /* zcela průhledné */
+    background-color: rgba(0, 0, 0, 0); 
     border: none;
     }
 
-    /* jezdec scrollbar */
+   
     ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0); /* jemně bílý */
+    background-color: rgba(0, 0, 0, 0); 
     border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0); /* aby nevznikal světlý okraj */
+    border: 2px solid rgba(0, 0, 0, 0); 
     transition: background 0.3s ease;
     }
 
-    /* hover efekt */
+   
     ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(70, 70, 70);
     }
 
-    /* Firefox */
+  
     html {
     scrollbar-width: thin;
     scrollbar-color: rgba(49, 49, 49) transparent;
@@ -83,25 +76,40 @@
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
 
-    /* -------------------------
-       Layout rule: giant vertical gaps
-       Each section centered; mobile ~100vh, desktop >> 100vh
-       ------------------------- */
+ 
     section {
       position:relative;
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:24vh 1rem;            /* mobile comfortable vertical breathing room */
+      padding:24vh 1rem;            
     }
     .inner { max-width:960px; margin:0 auto; width:100%; }
 
-    h1,h2{margin:0 0 1rem 0; max-width: 300px;transition: transform 1s ease-out;}
-    h1:hover, h2:hover {
-    text-shadow: 2px 2px 20px #9f00ff;
-    transform: scale(1.2);
+    cer{
+      color: rgba(255, 0, 0, 0.712);
     }
+
+    pop{
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    h3{margin:0 0 1rem 0; max-width: 300px;transition: transform 1s ease-out; font-size: 3rem;;}
+
+    h1, h2 {
+      margin: 0 0 1rem 0;
+      max-width: 300px;
+      transition: filter 1s ease-out;
+      font-size: 5rem
+    }
+
+    h1:hover, h2:hover {
+      filter: drop-shadow(0px 0px 15px #9f00ff);
+    }
+
 
     article.card.is-revealed {
       transition: transform 1s ease-out;
@@ -115,7 +123,6 @@
 
     p{margin:0 0 1rem 0}
 
-    /* Hero specifics */
     .eyebrow{color:var(--muted);font-weight:600;margin-bottom:.8rem}
     .hero h1{
       font-weight:800;line-height:1.02;
@@ -133,7 +140,7 @@
       background: rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       border: 1px solid rgba(255, 255, 255, 0.6);
-      pointer-events: none; /* aby neblokovala klikání */
+      pointer-events: none; 
       transform: translate(-50%, -50%);
       transition: transform 0.1s ease-out;
       backdrop-filter: blur(4px);
@@ -152,17 +159,17 @@
     .cta-primary:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(255,255,255,0.02)}
     .cta-ghost{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
 
-    /* Hero visual under text */
+ 
     .hero-visual{
       margin-top:3.2rem;
-      background:var(--surface);border-radius:var(--radius-lg); padding:1rem; position:relative; overflow:hidden;
+      background:#333333;border-radius:var(--radius-lg); padding:1rem; position:relative; overflow:hidden;
       height:380px; display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);
       transform:translateY(0); transition:transform 800ms cubic-bezier(.16,.84,.28,1);
     }
     .floating{animation:floaty 8s ease-in-out infinite}
     @keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }
 
-    /* Projects */
+   
     .projects .grid{display:grid;grid-template-columns:1fr;gap:1.8rem}
     .card{background:var(--surface);border-radius:var(--radius-md);overflow:hidden;position:relative;padding-bottom:0;box-shadow:0 18px 48px rgba(0,0,0,0.7);transition:transform 520ms cubic-bezier(.16,.84,.28,1)}
     .card:hover{transform:translateY(-10px)}
@@ -170,17 +177,17 @@
     .meta{padding:1.2rem}
     .chip{background:rgba(255,255,255,0.02);padding:.36rem .66rem;border-radius:999px;font-size:.82rem;color:var(--muted);margin-right:.4rem}
 
-    /* About & skills */
+    
     .about .bio{color:var(--muted);line-height:1.75;font-size:1.02rem;margin-bottom:1.25rem}
     .skills{background:var(--surface);padding:1.25rem;border-radius:14px}
     .skill{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0}
-    .progress{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:60%}
+    .progress{height:12px;background: rgb(255 0 0 / 18%);;border-radius:999px;overflow:hidden;width:60%}
     .progress>i{display:block;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0.96), rgba(255,255,255,0.86));width:60%}
 
-    /* Timeline */
+
     .timeline-list{display:grid;gap:1.6rem}
 
-    /* Contact */
+ 
     .card-form{background:var(--surface);padding:1.6rem;border-radius:14px;display:grid;gap:1rem;max-width:760px}
     .form-row{display:grid;grid-template-columns:1fr;gap:.9rem}
     input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:.85rem;border-radius:10px;font-size:1rem}
@@ -189,16 +196,23 @@
 
     footer{padding:2rem 1rem;color:var(--muted);text-align:left}
 
-    /* -------------------------
-       Smooth, slower reveal animation
-       ------------------------- */
-    [data-reveal]{
-      opacity:0;
-      transform:translateY(28px) scale(.995);
-      transition:opacity 900ms cubic-bezier(.16,.84,.28,1),
-                 transform 900ms cubic-bezier(.16,.84,.28,1);
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px) scale(0.998);
+      filter: blur(2px);
+      transition: 
+        opacity 1s cubic-bezier(.25,.1,.25,1),
+        transform 1s cubic-bezier(.25,.1,.25,1),
+        filter 1s cubic-bezier(.25,.1,.25,1);
     }
-    [data-reveal].is-revealed{opacity:1;transform:none}
+
+    [data-reveal].is-revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
 
     .micro-fade{
       opacity:0;
@@ -207,17 +221,17 @@
     }
     .micro-fade.show{opacity:1;transform:none}
 
-    /* Modal */
+
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:120}
     .modal.is-open{display:flex}
     .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.82);backdrop-filter: blur(6px)}
     .modal-panel{position:relative;background:var(--surface);padding:1.25rem;border-radius:12px;max-width:920px;width:calc(100% - 2rem);z-index:10;box-shadow:var(--shadow)}
     .modal-panel .close{position:absolute;right:10px;top:10px;border:0;background:transparent;color:var(--muted);font-size:1.1rem;cursor:pointer}
 
-    /* Focus */
+    
     a:focus, button:focus, input:focus, textarea:focus{outline:none;box-shadow:var(--focus)}
 
-    /* Desktop: make sections even taller so you need to scroll ~1–1.5 screens */
+   
     @media (min-width:900px){
       section{ padding:30vh 2rem; min-height:115vh }
       .projects .grid{grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1100px}
@@ -240,34 +254,38 @@
 </head>
 <body>
   <main>
-    <!-- HERO -->
+    
     <section id="hero" aria-label="Intro" data-reveal>
       <div class="inner">
-        <div class="eyebrow">Hello - I am</div>
-        <h1>_Lynex0<br><span style="font-weight:700">FiveM Developer</span></h1>
-        <p class="lead">I build and deliver the most performant and best-looking FiveM scripts, websites and UIs. I focus on practical UI details, accessibility and maintainable code.</p>
+        <div class="eyebrow">Zdravím - já jsem</div>
+        <h1><cer>_</cer>Lynex<cer>0</cer></h1>
+        <pop>Vyslovuje se to [lajnex]</pop>
+        <br><br>
+        <h3>FiveM/Web Developer</h3>
+        <br><br>
+        <p class="lead">Stavím ty nejlépe a nejmoderněji vypadající UI a webové rozhraní ať už v modifikaci FiveM, nebo přímo na internetu.</p>
 
         <div style="margin-top:2.2rem;display:flex;flex-direction:column;gap:.6rem">
-          <div class="micro-fade" style="transition-delay:120ms">• Focused on delivering high-quality FiveM scripts & UIs</div>
-          <div class="micro-fade" style="transition-delay:240ms">• Practical experience in server development and web front-end</div>
-          <div class="micro-fade" style="transition-delay:360ms">• Performance, visuals and maintainability</div>
+          <div class="micro-fade" style="transition-delay:120ms">• Zaměřuji se na rozhraní pro uživatele, dost přátelské a responzivní UI</div>
+          <div class="micro-fade" style="transition-delay:240ms">• Dokáži sestavit, opravit a vylepšit většinu scriptů</div>
+          <div class="micro-fade" style="transition-delay:360ms">• Výkon, přesnost a viditelnost</div>
         </div>
 
         <div class="hero-visual floating" aria-hidden="true" style="margin-top:3.2rem">
           <div style="width:100%;height:100%;border-radius:12px;display:flex;flex-direction:column;gap:12px; padding:18px;box-sizing:border-box">
             <div style="height:46px;display:flex;align-items:center;gap:10px">
-              <div style="width:10px;height:10px;border-radius:50%;background:#fff;opacity:.06"></div>
-              <div style="height:12px;width:60%;background:rgba(255,255,255,0.04);border-radius:8px"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#fff;opacity:.6"></div>
+              <div style="height:12px;width:60%;background:rgba(255, 255, 255, 0.3);border-radius:8px"></div>
             </div>
             <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-              <div style="background:rgba(255,255,255,0.02);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px">
-                <div style="height:10px;width:80%;background:rgba(255,255,255,0.04);border-radius:6px"></div>
-                <div style="height:10px;width:40%;background:rgba(255,255,255,0.03);border-radius:6px"></div>
-                <div style="height:36px;width:100%;background:rgba(255,255,255,0.04);border-radius:8px;align-self:end"></div>
+              <div style="background:rgba(255,255,255,0.2);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:12px">
+                <div style="height:10px;width:80%;background:rgba(255, 255, 255, 0.3);border-radius:6px"></div>
+                <div style="height:10px;width:40%;background:rgba(255,255,255,0.6);border-radius:6px"></div>
+                <div style="height:36px;width:100%;background:rgba(255,255,255,0.6);border-radius:8px;align-self:end"></div>
               </div>
-              <div style="background:rgba(255,255,255,0.01);border-radius:10px;display:flex;align-items:center;justify-content:center">
+              <div style="background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center">
                 <svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect width="120" height="80" rx="8" fill="#111"></rect>
+                  <rect width="120" height="80" rx="8" fill="#333333"></rect>
                 </svg>
               </div>
             </div>
@@ -276,10 +294,10 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
+   
     <section id="projects" class="projects" aria-label="Projects" data-reveal>
       <div class="inner">
-        <h2>Projects</h2>
+        <h2>Projekty</h2>
         <div class="grid" aria-live="polite" style="margin-top:2.4rem">
           <article class="card" data-reveal>
             <div class="thumb" aria-hidden="true">
@@ -289,7 +307,7 @@
             </div>
             <div class="meta">
               <h3>Aspect</h3>
-              <p>SCP:SL RP server - I was the owner. Responsible for server vision, features and management.</p>
+              <p>SCP:SL RP server, kde jsem poprvé okusil nějaké programovaní. Také jsem se v této době dal do jazyku Python.</p>
               <div style="margin-top:.6rem"><span class="chip">Server</span><span class="chip">Python</span><span class="chip">Administration</span></div>
             </div>
           </article>
@@ -302,7 +320,7 @@
             </div>
             <div class="meta">
               <h3>CNE</h3>
-              <p>Arma 3 server - main developer and owner. Focused on gameplay systems and server tooling.</p>
+              <p>Arma 3 server, zde jsem se dost naučil pracovat s konzolemi a prozkoumáváním serveru zevnitř.</p>
               <div style="margin-top:.6rem"><span class="chip">Arma 3</span><span class="chip">Server</span><span class="chip">Lua</span></div>
             </div>
           </article>
@@ -315,7 +333,7 @@
             </div>
             <div class="meta">
               <h3>NXSRP</h3>
-              <p>Current FiveM server - I own it and I'm the main developer. Building scripts, UI and web front-ends.</p>
+              <p>Nynější FiveM RP server, na kterém aktivně pracuji. Všechny mé znalosti nyní užívám zde.</p>
               <div style="margin-top:.6rem"><span class="chip">FiveM</span><span class="chip">Lua</span><span class="chip">HTML/CSS</span></div>
             </div>
           </article>
@@ -327,8 +345,8 @@
               </svg>
             </div>
             <div class="meta">
-              <h3>NEXUSSERVICES</h3>
-              <p>Started to develop and distribute free FiveM scripts such as my own Anticheat.</p>
+              <h3>Nexus Services</h3>
+              <p>Začal jsem programovat vlastní resources pro server, jako weby, nebo dokonce vlastní anticheat.</p>
               <div style="margin-top:.6rem"><span class="chip">FiveM</span><span class="chip">Lua</span><span class="chip">HTML/CSS</span></div>
             </div>
           </article>
@@ -336,14 +354,14 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    
     <section id="about" class="about" aria-label="About" data-reveal>
       <div class="inner">
-        <h2>About</h2>
-        <p class="bio">I am <strong>_Lynex0</strong> - a FiveM Developer. I work to deliver the most performant and best-looking FiveM scripts, websites and UIs. I focus on server-side tooling, polished front-ends and frequent updates.</p>
+        <h2>O mě</h2>
+        <p class="bio">Jmenuji se<strong>Marek</strong> jsem FiveMový / webový developer, který se zaměřuje hlavně na moderní styl a aby UI dobře vypadalo pro návštěvníky, nebo hráče. Zaměřuji se na stabilitu a časté aktualizace.</p>
 
         <div class="skills" style="margin-top:1.6rem">
-          <h3 style="margin:0 0 .6rem 0">Skills</h3>
+          <h3 style="margin:0 0 .6rem 0">Co umím?</h3>
           <div class="skill"><strong>HTML & CSS</strong><div class="progress"><i style="width:90%"></i></div></div>
           <div class="skill"><strong>Lua</strong><div class="progress"><i style="width:80%"></i></div></div>
           <div class="skill"><strong>Python</strong><div class="progress"><i style="width:100%"></i></div></div>
@@ -352,62 +370,50 @@
       </div>
     </section>
 
-    <!-- TIMELINE -->
+    
     <section class="timeline" aria-label="Experience" data-reveal>
       <div class="inner">
-        <h2>Experience</h2>
+        <h2>Zkušenost</h2>
         <div class="timeline-list" style="margin-top:1.6rem">
           <div style="padding:1.6rem;background:var(--surface);border-radius:12px">
             <strong>2020 - 2021</strong>
-            <div style="color:var(--muted);margin-top:.6rem">Interest in Linux and server functionality; exploring system tools and environments.</div>
+            <div style="color:var(--muted);margin-top:.6rem">Začal jsem se zajímat o Linux a schopnosti v konzoli.</div>
           </div>
 
           <div style="height:1.4rem"></div>
 
           <div style="padding:1.6rem;background:var(--surface);border-radius:12px">
             <strong>2022 - 2023</strong>
-            <div style="color:var(--muted);margin-top:.6rem">Founded Aspect - worked heavily with Python and server tooling.</div>
+            <div style="color:var(--muted);margin-top:.6rem">Začal jsem se zajímat o programovaní, započal jsem učení Pythonu a něco málo o HTML.</div>
           </div>
 
           <div style="height:1.4rem"></div>
 
           <div style="padding:1.6rem;background:var(--surface);border-radius:12px">
             <strong>2024 - 2025</strong>
-            <div style="color:var(--muted);margin-top:.6rem">CNE and then NXSRP - deepened work in Lua and front-end (HTML & CSS) for FiveM projects.</div>
+            <div style="color:var(--muted);margin-top:.6rem">Začal jsem být aktivní na GitHubu, vyvíjet vlastní aplikace, weby a scripty.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    
     <section id="contact" class="contact" aria-label="Contact" data-reveal>
       <div class="inner">
-        <h2>Contact</h2>
-        <form id="contactForm" class="card-form" aria-label="Contact form" style="margin-top:1.6rem">
-          <!-- Set action & method to your endpoint when ready -->
-          <div class="form-row">
-            <input name="name" type="text" placeholder="Your name" required aria-label="Name">
-            <input name="email" type="email" placeholder="Email" required aria-label="Email">
-          </div>
-          <textarea name="message" placeholder="Message" required aria-label="Message"></textarea>
-          <div class="form-actions">
-            <button type="submit" class="cta-primary">Send message</button>
-            <div class="note">Prefer email? Write to: <strong>0lynex0@gmail.com</strong></div>
-          </div>
-          <div id="formMessage" role="status" aria-live="polite" style="color:var(--text);display:none;margin-top:.6rem"></div>
-        </form>
+        <h2>Kontakt</h2>
+        <div class="note">Potřebujete mě kontaktovat?<strong>0lynex0@gmail.com</strong></div>
       </div>
     </section>
 
     <footer aria-label="Footer">
       <div class="inner">
-        <!-- Footer per your request: only © _Lynex0 -->
+        
         <div style="color:var(--muted)">© _Lynex0 2025</div>
       </div>
     </footer>
   </main>
 
-  <!-- Modal minimal -->
+  
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop" tabindex="-1"></div>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -417,108 +423,148 @@
     </div>
   </div>
 
-  <script>
-    // utilities & interactions
-    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.remove('is-revealed'));
-    document.getElementById('year')?.remove?.(); // not used now
 
-    // IntersectionObserver tuned for smoother reveal
-    const revealEls = document.querySelectorAll('[data-reveal]');
-    const obs = new IntersectionObserver((entries, o) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const rect = entry.target.getBoundingClientRect();
-          const posFactor = Math.max(0, Math.floor(rect.top / 160));
-          const baseDelay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0) * 90;
-          const delay = Math.min(1500, baseDelay + posFactor * 140);
-          setTimeout(()=> entry.target.classList.add('is-revealed'), delay);
-          o.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+<!-- Upravený hlavní skript (nahraď tvůj stávající <script> tímto) -->
+<script>
+  document.querySelectorAll('[data-reveal]').forEach(el => el.classList.remove('is-revealed'));
+  document.getElementById('year')?.remove?.();
 
-    revealEls.forEach((el, i) => {
-      el.datasetIndex = i % 6;
-      obs.observe(el);
-    });
-
-    // micro-fade intro lines
-    document.querySelectorAll('.micro-fade').forEach((el, idx) => {
-      setTimeout(()=> el.classList.add('show'), 260 + idx * 160);
-    });
-
-    // modal basic handlers (for future use)
-    const modal = document.getElementById('modal');
-    const modalClose = document.getElementById('modalClose');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-
-    document.querySelectorAll('.view-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const data = JSON.parse(btn.dataset.project || '{}');
-        modalTitle.textContent = data.title || 'Project';
-        modalDesc.textContent = data.desc || '';
-        openModal();
-      });
-    });
-
-    function openModal(){
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-      modalClose.focus();
-    }
-    function closeModal(){
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-    }
-    modalClose.addEventListener('click', closeModal);
-    modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
-
-    // contact form demo (no external submit)
-    const form = document.getElementById('contactForm');
-    const formMsg = document.getElementById('formMessage');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      formMsg.style.display = 'block';
-      formMsg.textContent = 'PLEASE WRITE TO EMAIL, NOT YET SETED-UP.';
-      form.reset();
-      setTimeout(()=> formMsg.style.display = 'none', 4200);
-    });
-
-    // Enter key activation a11y
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter') el.click();
-      });
-    });
-
-    const dot = document.querySelector('.cursor-dot');
-    if(dot){
-      let x = window.innerWidth/2, y = window.innerHeight/2;
-      let targetX = x, targetY = y;
-      const offsetX = -6; // posun doleva
-      const offsetY = -2; // lehce nahoru
-
-      window.addEventListener('mousemove', e => {
-        targetX = e.clientX + offsetX;
-        targetY = e.clientY + offsetY;
-      });
-
-      function animateDot(){
-        x += (targetX - x) * 0.15;
-        y += (targetY - y) * 0.15;
-        dot.style.left = x + 'px';
-        dot.style.top = y + 'px';
-        requestAnimationFrame(animateDot);
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const obs = new IntersectionObserver((entries, o) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const rect = entry.target.getBoundingClientRect();
+        const posFactor = Math.max(0, Math.floor(rect.top / 160));
+        const baseDelay = (entry.target.datasetIndex ? Number(entry.target.datasetIndex) : 0) * 90;
+        const delay = Math.min(1500, baseDelay + posFactor * 140);
+        setTimeout(()=> entry.target.classList.add('is-revealed'), delay);
+        o.unobserve(entry.target);
       }
+    });
+  }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
 
+  revealEls.forEach((el, i) => {
+    el.datasetIndex = i % 6;
+    obs.observe(el);
+  });
+
+  document.querySelectorAll('.micro-fade').forEach((el, idx) => {
+    setTimeout(()=> el.classList.add('show'), 260 + idx * 160);
+  });
+
+  const modal = document.getElementById('modal');
+  const modalClose = document.getElementById('modalClose');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const data = JSON.parse(btn.dataset.project || '{}');
+      modalTitle.textContent = data.title || 'Project';
+      modalDesc.textContent = data.desc || '';
+      openModal();
+    });
+  });
+
+  function openModal(){
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  modalClose.addEventListener('click', closeModal);
+  modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
+
+  /* -------------------------
+     Kontakt: EmailJS integration
+     - nahraď YOUR_SERVICE_ID a YOUR_TEMPLATE_ID
+     - tlačítko se dočasně zakáže při odesílání
+  -------------------------*/
+  const form = document.getElementById('contactForm');
+  const formMsg = document.getElementById('formMessage');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // replace these with values from your EmailJS dashboard
+    const SERVICE_ID = 'service_ekvhpc8';
+    const TEMPLATE_ID = 'template_9r2v9to';
+
+    // základní validace (pro jistotu)
+    const name = form.querySelector('[name="name"]')?.value?.trim();
+    const email = form.querySelector('[name="email"]')?.value?.trim();
+    const message = form.querySelector('[name="message"]')?.value?.trim();
+    if(!name || !email || !message){
+      formMsg.style.display = 'block';
+      formMsg.textContent = 'Please fill in all fields.';
+      setTimeout(()=> formMsg.style.display = 'none', 4000);
+      return;
+    }
+
+    // UX: disable submit while sending
+    submitBtn.disabled = true;
+    submitBtn.setAttribute('aria-busy', 'true');
+    formMsg.style.display = 'block';
+    formMsg.textContent = 'Sending…';
+
+    // Pošle form přímo (EmailJS parseuje inputy podle jmen polí)
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form)
+      .then((response) => {
+        // úspěch
+        formMsg.textContent = 'Message sent successfully! Thank you.';
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+
+        // pro lepší přístupnost: oznámíme změnu
+        setTimeout(()=> formMsg.style.display = 'none', 5000);
+      }, (error) => {
+        console.error('EmailJS error:', error);
+        formMsg.textContent = 'Failed to send message. Please try again later or email directly.';
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+        setTimeout(()=> formMsg.style.display = 'none', 6000);
+      });
+  });
+
+  /* zpětná kompatibilita: Enter na odkazech/tlačítkách */
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter') el.click();
+    });
+  });
+
+  const dot = document.querySelector('.cursor-dot');
+  if(dot){
+    let x = window.innerWidth/2, y = window.innerHeight/2;
+    let targetX = x, targetY = y;
+    const offsetX = -6;
+    const offsetY = -2;
+
+    window.addEventListener('mousemove', e => {
+      targetX = e.clientX + offsetX;
+      targetY = e.clientY + offsetY;
+    });
+
+    function animateDot(){
+      x += (targetX - x) * 0.15;
+      y += (targetY - y) * 0.15;
       dot.style.left = x + 'px';
       dot.style.top = y + 'px';
       requestAnimationFrame(animateDot);
     }
-  </script>
+
+    dot.style.left = x + 'px';
+    dot.style.top = y + 'px';
+    requestAnimationFrame(animateDot);
+  }
+</script>
 </body>
                                                    </html>
